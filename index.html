@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Browser Favicon using official Logo asset -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>ArogyaNidhi Traders — The Promise of Purity</title>
+    <!-- Google Fonts: Inter for UI, Playfair Display for premium headlines -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        luxBlack: 'var(--bg-primary)',
+                        luxDarkBlue: 'var(--bg-secondary)',
+                        luxNavy: 'var(--bg-tertiary)',
+                        luxGold: '#d4af37',
+                        luxGoldLight: '#f3e5ab',
+                        luxGoldDark: '#aa820a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* CSS Variables for seamless Dark/Light transition of the entire color system */
+        :root {
+            --bg-primary: #06090d;
+            --bg-secondary: #0c131d;
+            --bg-tertiary: #131e2d;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: rgba(212, 175, 55, 0.15);
+            --glass-bg: rgba(12, 19, 29, 0.85);
+            --card-hover-border: rgba(212, 175, 55, 0.4);
+            --badge-bg: rgba(212, 175, 55, 0.1);
+            --input-bg: #06090d;
+        }
+
+        .light-mode {
+            --bg-primary: #FAF8F5; /* Premium Champagne Ivory Background */
+            --bg-secondary: #FFFFFF; /* Warm White Cards */
+            --bg-tertiary: #F4EFE6; /* Elegant Linen highlights */
+            --text-primary: #1C1917; /* Slate Charcoal for crisp readability */
+            --text-secondary: #57534E; /* Soft warm gray */
+            --border-color: rgba(170, 130, 10, 0.2); /* Creamy gold borders */
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --card-hover-border: rgba(170, 130, 10, 0.55);
+            --badge-bg: rgba(170, 130, 10, 0.12);
+            --input-bg: #F4EFE6;
+        }
+
+        /* Applying transitions on variables for premium look */
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+        }
+
+        /* Essential text utility overrides for adaptive color matching */
+        .adaptive-text { color: var(--text-primary); }
+        .adaptive-text-secondary { color: var(--text-secondary); }
+        .adaptive-border { border-color: var(--border-color); }
+        .adaptive-bg-secondary { background-color: var(--bg-secondary); }
+        .adaptive-bg-tertiary { background-color: var(--bg-tertiary); }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #aa820a 0%, #d4af37 50%, #aa820a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #aa820a 0%, #d4af37 50%, #f3e5ab 100%);
+        }
+        .luxury-shadow {
+            box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.15);
+        }
+        .scrollbar-hidden::-webkit-scrollbar {
+            display: none;
+        }
+        /* Page Load Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Custom Premium Alert Toast / Notification Frame (Avoids generic alerts) -->
+    <div id="custom-alert" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] transform scale-90 opacity-0 pointer-events-none transition-all duration-300 max-w-sm w-full px-4">
+        <div class="glass-panel border border-luxGold p-4 rounded-2xl flex items-center gap-3 bg-black/95 shadow-2xl">
+            <i class="fa-solid fa-circle-exclamation text-luxGold text-lg flex-shrink-0 animate-bounce"></i>
+            <p id="custom-alert-msg" class="text-xs text-white font-medium tracking-wide leading-relaxed"></p>
+        </div>
+    </div>
+
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-panel border-b shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Elegant Brand Identity with Official Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="relative w-12 h-12 rounded-lg overflow-hidden border border-luxGold/30 group-hover:border-luxGold/70 transition-all duration-300 shadow-lg bg-white flex items-center justify-center p-0.5">
+                    <img 
+                        src="logo.png" 
+                        alt="ArogyaNidhi Traders Logo" 
+                        class="w-full h-full object-contain"
+                        onerror="this.onerror=null; this.src='https://placehold.co/100x100/0c131d/d4af37?text=ANT';"
+                    />
+                </div>
+                <div>
+                    <span class="block font-serif text-lg tracking-wide adaptive-text group-hover:text-luxGold transition-colors font-bold">ArogyaNidhi</span>
+                    <span class="block text-[10px] tracking-[0.2em] uppercase text-luxGold/80" data-i18n="nav_brand_sub">Traders</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm tracking-wider uppercase font-medium">
+                <a href="#why-bilona" data-i18n="nav_process" class="adaptive-text-secondary hover:text-luxGold transition-colors">The Process</a>
+                <a href="#products" data-i18n="nav_products" class="adaptive-text-secondary hover:text-luxGold transition-colors">Our Ghee</a>
+                <a href="#philosophy" data-i18n="nav_philosophy" class="font-semibold gold-gradient-text">Philosophy</a>
+                <a href="#faq" data-i18n="nav_faq" class="adaptive-text-secondary hover:text-luxGold transition-colors">Questions</a>
+                <a href="#contact" data-i18n="nav_contact" class="adaptive-text-secondary hover:text-luxGold transition-colors">Contact</a>
+            </nav>
+
+            <!-- Interactive Utilities Area: Language Selector, Theme Switcher, and Cart Indicator -->
+            <div class="flex items-center gap-2 sm:gap-4">
+                
+                <!-- Click-to-Open Language Dropdown -->
+                <div class="relative">
+                    <button id="lang-dropdown-btn" class="p-2 rounded-lg border border-luxGold/20 hover:border-luxGold/60 hover:bg-luxGold/10 transition-all flex items-center gap-1.5 text-xs text-luxGold font-semibold">
+                        <i class="fa-solid fa-language text-sm"></i>
+                        <span id="current-lang-lbl" class="hidden sm:inline">EN</span>
+                        <i class="fa-solid fa-chevron-down text-[9px] opacity-75"></i>
+                    </button>
+                    <div id="lang-dropdown-menu" class="absolute right-0 mt-2 w-48 rounded-xl glass-panel border border-luxGold/25 shadow-xl py-2 hidden z-50 overflow-hidden">
+                        <div class="max-h-64 overflow-y-auto scrollbar-hidden">
+                            <button onclick="changeLanguage('en')" class="w-full text-left px-4 py-2 text-xs hover:bg-luxGold/20 hover:text-luxGold transition-colors font-medium text-luxGold">English</button>
+                            <button onclick="changeLanguage('hi')" class="w-full text-left px-4 py-2 text-xs hover:bg-luxGold/20 hover:text-luxGold transition-colors font-medium text-luxGold">हिन्दी (Hindi)</button>
+                            <button onclick="changeLanguage('mr')" class="w-full text-left px-4 py-2 text-xs hover:bg-luxGold/20 hover:text-luxGold transition-colors font-medium text-luxGold">मराठी (Marathi)</button>
+                            <button onclick="changeLanguage('gu')" class="w-full text-left px-4 py-2 text-xs hover:bg-luxGold/20 hover:text-luxGold transition-colors font-medium text-luxGold">ગુજરાતી (Gujarati)</button>
+                            <button onclick="changeLanguage('pa')" class="w-full text-left px-4 py-2 text-xs hover:bg-luxGold/20 hover:text-luxGold transition-colors font-medium text-luxGold">ਪੰਜਾਬੀ (Punjabi)</button>
+                            <button onclick="changeLanguage('bn')" class="w-full text-left px-4 py-2 text-xs hover:bg-luxGold/20 hover:text-luxGold transition-colors font-medium text-luxGold">বাংলা (Bengali)</button>
+                            <button onclick="changeLanguage('ta')" class="w-full text-left px-4 py-2 text-xs hover:bg-luxGold/20 hover:text-luxGold transition-colors font-medium text-luxGold">தமிழ் (Tamil)</button>
+                            <button onclick="changeLanguage('te')" class="w-full text-left px-4 py-2 text-xs hover:bg-luxGold/20 hover:text-luxGold transition-colors font-medium text-luxGold">తెలుగు (Telugu)</button>
+                            <button onclick="changeLanguage('kn')" class="w-full text-left px-4 py-2 text-xs hover:bg-luxGold/20 hover:text-luxGold transition-colors font-medium text-luxGold">ಕನ್ನಡ (Kannada)</button>
+                            <button onclick="changeLanguage('ml')" class="w-full text-left px-4 py-2 text-xs hover:bg-luxGold/20 hover:text-luxGold transition-colors font-medium text-luxGold">മലയാളം (Malayalam)</button>
+                            <button onclick="changeLanguage('or')" class="w-full text-left px-4 py-2 text-xs hover:bg-luxGold/20 hover:text-luxGold transition-colors font-medium text-luxGold">ଓଡ଼ିଆ (Odia)</button>
+                            <button onclick="changeLanguage('as')" class="w-full text-left px-4 py-2 text-xs hover:bg-luxGold/20 hover:text-luxGold transition-colors font-medium text-luxGold">অসমীয়া (Assamese)</button>
+                            <button onclick="changeLanguage('ur')" class="w-full text-left px-4 py-2 text-xs hover:bg-luxGold/20 hover:text-luxGold transition-colors font-medium text-luxGold">اردو (Urdu)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleTheme()" class="p-2 rounded-full border border-luxGold/20 hover:border-luxGold/60 hover:bg-luxGold/10 transition-all text-luxGold">
+                    <i id="theme-icon" class="fa-solid fa-moon text-md"></i>
+                </button>
+
+                <!-- Interactive Cart Trigger Button -->
+                <button onclick="toggleCartModal()" class="relative p-2.5 rounded-full border border-luxGold/20 hover:border-luxGold/60 hover:bg-luxGold/10 transition-all duration-300 group">
+                    <i class="fa-solid fa-bag-shopping text-luxGold text-lg transition-transform group-hover:scale-110"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center scale-0 transition-transform">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+        <div class="absolute inset-0 bg-radial-at-t from-luxGold/5 via-transparent to-transparent z-0"></div>
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-luxGold/5 blur-[120px] rounded-full"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-luxGold/5 blur-[120px] rounded-full"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- Left Side: Hero Text Copy -->
+            <div class="space-y-8 animate-fade-in">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel">
+                    <span class="w-2 h-2 rounded-full bg-luxGold animate-ping"></span>
+                    <span class="text-xs uppercase tracking-widest text-luxGold font-semibold" data-i18n="hero_badge">Direct from Morena, MP</span>
+                </div>
+                
+                <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl leading-tight adaptive-text font-semibold">
+                    <span data-i18n="hero_h1_p1">The Ghee You Used</span> <br>
+                    <span class="gold-gradient-text italic" data-i18n="hero_h1_p2">To Know.</span>
+                </h1>
+
+                <p class="adaptive-text-secondary text-lg leading-relaxed max-w-lg" data-i18n="hero_desc">
+                    Many brands spend their energy trying to prove purity through marketing buzzwords. We spend ours keeping our traditional Rayi wooden-churner moving. Pure, preservative-free ghee made step-by-step at our home.
+                </p>
+
+                <!-- Core Values Icons -->
+                <div class="grid grid-cols-3 gap-4 py-4 border-y adaptive-border">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-mortar-pestle text-luxGold text-xl"></i>
+                        <span class="text-xs adaptive-text font-medium" data-i18n="val_1">Bilona Churned</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-ban text-luxGold text-xl"></i>
+                        <span class="text-xs adaptive-text font-medium" data-i18n="val_2">No Preservatives</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-truck-fast text-luxGold text-xl"></i>
+                        <span class="text-xs adaptive-text font-medium" data-i18n="val_3">Free PAN-India Delivery</span>
+                    </div>
+                </div>
+
+                <!-- Call to Actions -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#products" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm uppercase tracking-wider font-semibold gold-gradient-bg text-stone-900 hover:brightness-110 shadow-xl hover:shadow-luxGold/20 transition-all duration-300 group">
+                        <span data-i18n="hero_cta_primary">Taste Pure Ghee</span>
+                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                    <a href="#why-bilona" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm uppercase tracking-wider font-semibold glass-panel border hover:border-luxGold/50 adaptive-text transition-all duration-300">
+                        <span data-i18n="hero_cta_secondary">Our Preparation Facts</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Side: Majestic Logo Showcase -->
+            <div class="relative flex justify-center items-center lg:justify-end">
+                <div class="relative w-full max-w-[450px] aspect-square rounded-3xl overflow-hidden shadow-2xl border border-luxGold/15 luxury-shadow bg-stone-950 flex items-center justify-center p-4">
+                    <img 
+                        src="logo.png" 
+                        alt="ArogyaNidhi Gold Emblem" 
+                        class="w-full h-full object-contain transform scale-102 hover:scale-105 transition-transform duration-700"
+                        onerror="this.onerror=null; this.src='https://placehold.co/800x800/0c131d/d4af37?text=ArogyaNidhi+Traders';"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
+                    
+                    <!-- Floating Pure Stat Badge -->
+                    <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl glass-panel border border-luxGold/20 flex items-center justify-between bg-black/50">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-wider text-luxGold" data-i18n="badge_top">Local Heritage Sourcing</p>
+                            <p class="text-sm font-semibold text-white">Morena Chambal Region</p>
+                        </div>
+                        <span class="px-3 py-1 rounded bg-luxGold/10 text-luxGold text-xs font-bold border border-luxGold/20" data-i18n="badge_bot">TRADITIONAL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 adaptive-bg-tertiary border-y adaptive-border relative">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl italic adaptive-text leading-relaxed" data-i18n="pledge_quote">
+                "Many brands spend their energy proving purity. We spend ours delivering it. If you know how to test purity, become a customer first, then judge us by what reaches your home."
+            </h2>
+            <div class="mt-6 flex justify-center gap-2">
+                <span class="w-10 h-[1px] bg-luxGold/60 self-center"></span>
+                <span class="text-[10px] tracking-widest uppercase text-luxGold font-semibold" data-i18n="pledge_lbl">Our Simple Pledge</span>
+                <span class="w-10 h-[1px] bg-luxGold/60 self-center"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-bilona" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs uppercase tracking-widest text-luxGold font-bold" data-i18n="bilona_subtitle">The Wooden Rayi (Churner) Philosophy</span>
+                <h2 class="font-serif text-4xl sm:text-5xl adaptive-text font-semibold" data-i18n="bilona_title">Hand-Churned. Unaltered. Real.</h2>
+                <p class="adaptive-text-secondary" data-i18n="bilona_desc">We do not buy bulk commercial ghee nor do we use high-speed centrifuges. We use the slow, patient process of Rayi to get our shudh desi ghee.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Point 1 -->
+                <div class="p-8 rounded-2xl glass-panel space-y-4 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-lg bg-luxGold/10 flex items-center justify-center border border-luxGold/20">
+                            <i class="fa-solid fa-arrows-spin text-luxGold text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-serif adaptive-text font-semibold" data-i18n="fact1_title">Traditional Rayi Churning</h3>
+                        <p class="adaptive-text-secondary text-sm leading-relaxed" data-i18n="fact1_desc">
+                            No high-volume direct cream shortcuts. Our ghee is prepared utilizing the time-tested wooden churning method to preserve organic integrity and authentic grain structure.
+                        </p>
+                    </div>
+                    <span class="text-[10px] text-luxGold tracking-widest uppercase font-semibold" data-i18n="fact_compromise">No compromise</span>
+                </div>
+
+                <!-- Point 2 -->
+                <div class="p-8 rounded-2xl glass-panel space-y-4 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-lg bg-luxGold/10 flex items-center justify-center border border-luxGold/20">
+                            <i class="fa-solid fa-circle-check text-luxGold text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-serif adaptive-text font-semibold" data-i18n="fact2_title">Zero Preservatives</h3>
+                        <p class="adaptive-text-secondary text-sm leading-relaxed" data-i18n="fact2_desc">
+                            What you receive is raw, pure nectar. We never add colouring agents, industrial thickeners, stabilizers, or extenders. Safe, clean, and honest.
+                        </p>
+                    </div>
+                    <span class="text-[10px] text-luxGold tracking-widest uppercase font-semibold" data-i18n="fact_ingredients">100% Honest Ingredients</span>
+                </div>
+
+                <!-- Point 3 -->
+                <div class="p-8 rounded-2xl glass-panel space-y-4 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-lg bg-luxGold/10 flex items-center justify-center border border-luxGold/20">
+                            <i class="fa-solid fa-hands-wash text-luxGold text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-serif adaptive-text font-semibold" data-i18n="fact3_title">Rigorous Kitchen Hygiene</h3>
+                        <p class="adaptive-text-secondary text-sm leading-relaxed" data-i18n="fact3_desc">
+                            Made with extreme attention to personal cleanliness, sterilizing vessels and maintaining pristine surroundings in Morena, MP. Purity demands absolute respect.
+                        </p>
+                    </div>
+                    <span class="text-[10px] text-luxGold tracking-widest uppercase font-semibold" data-i18n="fact_devotion">Prepared with devotion</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="py-24 adaptive-bg-tertiary relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <span class="text-xs uppercase tracking-widest text-luxGold font-bold" data-i18n="catalog_badge">The Golden Selection</span>
+                <h2 class="font-serif text-4xl sm:text-5xl adaptive-text font-semibold" data-i18n="catalog_title">Select Your Craft Pack</h2>
+                <p class="adaptive-text-secondary" data-i18n="catalog_desc">Every batch is prepared with extreme care. Pick your volume, see your transparent pricing instantly, and reserve yours via UPI & WhatsApp.</p>
+            </div>
+
+            <!-- Two Product Interactive Showcases -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Product 1: Desi Cow Ghee -->
+                <div class="rounded-3xl glass-panel p-6 sm:p-8 flex flex-col justify-between border luxury-shadow relative overflow-hidden group">
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-luxGold/5 blur-[50px] rounded-full"></div>
+                    <div>
+                        <!-- Official image mapping -->
+                        <div class="relative w-full h-80 rounded-2xl overflow-hidden mb-6 border adaptive-border bg-stone-950 flex items-center justify-center">
+                            <img 
+                                src="ghee-Cow.png" 
+                                alt="Cow Bilona Ghee" 
+                                class="w-full h-full object-contain transform hover:scale-105 transition-transform duration-500"
+                            />
+                            <span class="absolute top-4 left-4 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase gold-gradient-bg text-stone-950" data-i18n="cow_milk_lbl">
+                                Desi Cow's Milk
+                            </span>
+                        </div>
+
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-serif text-2xl adaptive-text font-semibold" data-i18n="prod_cow_name">Pure Bilona Ghee made with Desi Cow's Milk</h3>
+                                <p class="adaptive-text-secondary text-xs mt-1" data-i18n="prod_cow_tagline">Traditional Bilona Ghee made from pure Desi Cow Milk.</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-2xl font-bold text-luxGold font-serif" id="cow-price-display">₹150</span>
+                                <span class="block text-[10px] adaptive-text-secondary tracking-wider" data-i18n="free_shipping">Free Shipping Included</span>
+                            </div>
+                        </div>
+
+                        <p class="adaptive-text-secondary text-sm leading-relaxed mb-6" data-i18n="prod_cow_desc">
+                            Sourced from pure Desi Cow milk, slowly simmered to extract deep aroma, golden color, and healthy, naturally granulated grain structure. Ideal for everyday health and traditional Indian recipes.
+                        </p>
+
+                        <!-- Package Sizes Dynamic Pills -->
+                        <div class="space-y-3 mb-6">
+                            <span class="block text-xs uppercase tracking-wider adaptive-text-secondary font-semibold" data-i18n="choose_size_lbl">Choose Volume Pack:</span>
+                            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                                <button onclick="selectPack('cow', '100g', 150)" class="cow-pill border border-luxGold/40 bg-luxGold/20 text-luxGold py-2 rounded-lg text-xs font-bold transition-all duration-300">100g</button>
+                                <button onclick="selectPack('cow', '250g', 375)" class="cow-pill border adaptive-border hover:border-luxGold/40 adaptive-text py-2 rounded-lg text-xs font-semibold transition-all duration-300">250g</button>
+                                <button onclick="selectPack('cow', '500g', 750)" class="cow-pill border adaptive-border hover:border-luxGold/40 adaptive-text py-2 rounded-lg text-xs font-semibold transition-all duration-300">500g</button>
+                                <button onclick="selectPack('cow', '1kg', 1500)" class="cow-pill border adaptive-border hover:border-luxGold/40 adaptive-text py-2 rounded-lg text-xs font-semibold transition-all duration-300">1kg</button>
+                                <button onclick="selectPack('cow', '2kg', 3000)" class="cow-pill border adaptive-border hover:border-luxGold/40 adaptive-text py-2 rounded-lg text-xs font-semibold transition-all duration-300">2kg</button>
+                                <button onclick="selectPack('cow', '5kg', 7500)" class="cow-pill border adaptive-border hover:border-luxGold/40 adaptive-text py-2 rounded-lg text-xs font-semibold transition-all duration-300">5kg</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Controls -->
+                    <div class="flex items-center gap-4 pt-4 border-t adaptive-border">
+                        <div class="flex items-center border adaptive-border rounded-xl overflow-hidden adaptive-bg-secondary">
+                            <button onclick="changeQty('cow', -1)" class="px-3 py-2 hover:bg-luxGold/15 adaptive-text-secondary transition-colors">-</button>
+                            <span id="cow-qty" class="px-4 py-2 font-semibold text-sm adaptive-text">1</span>
+                            <button onclick="changeQty('cow', 1)" class="px-3 py-2 hover:bg-luxGold/15 adaptive-text-secondary transition-colors">+</button>
+                        </div>
+                        <button onclick="addToCart('cow')" class="flex-1 py-3 px-6 rounded-xl gold-gradient-bg text-stone-900 font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-basket-shopping"></i> <span data-i18n="add_to_cart_btn">Add To Cart</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2: Buffalo Ghee -->
+                <div class="rounded-3xl glass-panel p-6 sm:p-8 flex flex-col justify-between border luxury-shadow relative overflow-hidden group">
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-luxGold/5 blur-[50px] rounded-full"></div>
+                    <div>
+                        <!-- Official image mapping -->
+                        <div class="relative w-full h-80 rounded-2xl overflow-hidden mb-6 border adaptive-border bg-stone-950 flex items-center justify-center">
+                            <img 
+                                src="ghee-Buffallo.png" 
+                                alt="Buffalo Bilona Ghee" 
+                                class="w-full h-full object-contain transform hover:scale-105 transition-transform duration-500"
+                            />
+                            <span class="absolute top-4 left-4 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase bg-slate-100 text-stone-950 border border-white/20" data-i18n="buffalo_milk_lbl">
+                                Buffalo's Milk
+                            </span>
+                        </div>
+
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-serif text-2xl adaptive-text font-semibold" data-i18n="prod_buf_name">Pure Bilona Ghee made with Buffalo Milk</h3>
+                                <p class="adaptive-text-secondary text-xs mt-1" data-i18n="prod_buf_tagline">Traditional Bilona Ghee made from pure Buffalo Milk.</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-2xl font-bold text-luxGold font-serif" id="buffalo-price-display">₹120</span>
+                                <span class="block text-[10px] adaptive-text-secondary tracking-wider" data-i18n="free_shipping">Free Shipping Included</span>
+                            </div>
+                        </div>
+
+                        <p class="adaptive-text-secondary text-sm leading-relaxed mb-6" data-i18n="prod_buf_desc">
+                            Prepared with standard premium buffalo milk cream, churned with wooden rayi. Known for its rich high-smoke cooking properties, gorgeous white-cream grain, and pure authentic taste.
+                        </p>
+
+                        <!-- Package Sizes Dynamic Pills -->
+                        <div class="space-y-3 mb-6">
+                            <span class="block text-xs uppercase tracking-wider adaptive-text-secondary font-semibold" data-i18n="choose_size_lbl">Choose Volume Pack:</span>
+                            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                                <button onclick="selectPack('buffalo', '100g', 120)" class="buffalo-pill border border-luxGold/40 bg-luxGold/20 text-luxGold py-2 rounded-lg text-xs font-bold transition-all duration-300">100g</button>
+                                <button onclick="selectPack('buffalo', '250g', 300)" class="buffalo-pill border adaptive-border hover:border-luxGold/40 adaptive-text py-2 rounded-lg text-xs font-semibold transition-all duration-300">250g</button>
+                                <button onclick="selectPack('buffalo', '500g', 600)" class="buffalo-pill border adaptive-border hover:border-luxGold/40 adaptive-text py-2 rounded-lg text-xs font-semibold transition-all duration-300">500g</button>
+                                <button onclick="selectPack('buffalo', '1kg', 1200)" class="buffalo-pill border adaptive-border hover:border-luxGold/40 adaptive-text py-2 rounded-lg text-xs font-semibold transition-all duration-300">1kg</button>
+                                <button onclick="selectPack('buffalo', '2kg', 2400)" class="buffalo-pill border adaptive-border hover:border-luxGold/40 adaptive-text py-2 rounded-lg text-xs font-semibold transition-all duration-300">2kg</button>
+                                <button onclick="selectPack('buffalo', '5kg', 6000)" class="buffalo-pill border adaptive-border hover:border-luxGold/40 adaptive-text py-2 rounded-lg text-xs font-semibold transition-all duration-300">5kg</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Controls -->
+                    <div class="flex items-center gap-4 pt-4 border-t adaptive-border">
+                        <div class="flex items-center border adaptive-border rounded-xl overflow-hidden adaptive-bg-secondary">
+                            <button onclick="changeQty('buffalo', -1)" class="px-3 py-2 hover:bg-luxGold/15 adaptive-text-secondary transition-colors">-</button>
+                            <span id="buffalo-qty" class="px-4 py-2 font-semibold text-sm adaptive-text">1</span>
+                            <button onclick="changeQty('buffalo', 1)" class="px-3 py-2 hover:bg-luxGold/15 adaptive-text-secondary transition-colors">+</button>
+                        </div>
+                        <button onclick="addToCart('buffalo')" class="flex-1 py-3 px-6 rounded-xl gold-gradient-bg text-stone-900 font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-basket-shopping"></i> <span data-i18n="add_to_cart_btn">Add To Cart</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="philosophy" class="py-24 border-t adaptive-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Left Details -->
+                <div class="space-y-6">
+                    <span class="text-xs uppercase tracking-widest text-luxGold font-bold" data-i18n="philosophy_badge">Absolute Sincerity</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl adaptive-text font-semibold" data-i18n="philosophy_title">How we keep our promise</h2>
+                    <p class="adaptive-text-secondary leading-relaxed" data-i18n="philosophy_desc">
+                        Rather than displaying bought certificates, fake testimonials, or fabricated award claims, we rely on radical honesty. We do not mass manufacture; we handle only clean quantities to prioritize hygiene and taste.
+                    </p>
+                    
+                    <div class="space-y-4 pt-4">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-luxGold/10 flex items-center justify-center border border-luxGold/20 mt-1">
+                                <i class="fa-solid fa-check text-luxGold text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="adaptive-text font-semibold" data-i18n="pledge1_title">Homemade Scale</h4>
+                                <p class="adaptive-text-secondary text-sm mt-1" data-i18n="pledge1_desc">Prepared and managed inside a traditional, completely sterilized kitchen environment.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-luxGold/10 flex items-center justify-center border border-luxGold/20 mt-1">
+                                <i class="fa-solid fa-check text-luxGold text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="adaptive-text font-semibold" data-i18n="pledge2_title">Direct Sourcing From Local Dairies</h4>
+                                <p class="adaptive-text-secondary text-sm mt-1" data-i18n="pledge2_desc">Sourced with scrutiny directly from Morena’s lush Chambal basin belt, legendary for highly nutritional grass-fed dairy livestock.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-luxGold/10 flex items-center justify-center border border-luxGold/20 mt-1">
+                                <i class="fa-solid fa-check text-luxGold text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="adaptive-text font-semibold" data-i18n="pledge3_title">Zero-Additive Guarantee</h4>
+                                <p class="adaptive-text-secondary text-sm mt-1" data-i18n="pledge3_desc">Pure rayi product. Absolutely no coloring agents, hydrogenated fats, synthetic scents, or stabilizers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Graphics: Premium Process Steps Grid -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-6 rounded-2xl glass-panel space-y-2 mt-8">
+                        <span class="text-3xl text-luxGold font-serif">01</span>
+                        <h4 class="adaptive-text font-bold" data-i18n="step1_title">Milk Sourcing</h4>
+                        <p class="adaptive-text-secondary text-xs leading-relaxed" data-i18n="step1_desc">Pristine milk secured every single day from our trusted Morena farms.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl glass-panel space-y-2">
+                        <span class="text-3xl text-luxGold font-serif">02</span>
+                        <h4 class="adaptive-text font-bold" data-i18n="step2_title">Wood-Churn Rayi</h4>
+                        <p class="adaptive-text-secondary text-xs leading-relaxed" data-i18n="step2_desc">Turned at slow velocity to yield highly delicious, structured yellow/cream butter.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl glass-panel space-y-2">
+                        <span class="text-3xl text-luxGold font-serif">03</span>
+                        <h4 class="adaptive-text font-bold" data-i18n="step3_title">Boil to Granule</h4>
+                        <p class="adaptive-text-secondary text-xs leading-relaxed" data-i18n="step3_desc">Clarified patiently under moderate heat until golden granules completely separate.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl glass-panel space-y-2 -mt-8">
+                        <span class="text-3xl text-luxGold font-serif">04</span>
+                        <h4 class="adaptive-text font-bold" data-i18n="step4_title">Aseptic Jarring</h4>
+                        <p class="adaptive-text-secondary text-xs leading-relaxed" data-i18n="step4_desc">Poured while warm directly into tightly sealed hygienic premium jars.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 adaptive-bg-tertiary border-t adaptive-border relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 space-y-4">
+                <span class="text-xs uppercase tracking-widest text-luxGold font-bold" data-i18n="faq_subtitle">Simple Direct Answers</span>
+                <h2 class="font-serif text-4xl adaptive-text font-semibold" data-i18n="faq_title">Answering Your Doubts</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Question 1 -->
+                <div class="rounded-2xl glass-panel overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(1)" class="w-full text-left px-6 py-5 flex justify-between items-center hover:bg-luxGold/5 transition-colors">
+                        <span class="adaptive-text font-medium pr-4" data-i18n="q1_text">What exactly is the wooden Rayi (Bilona) process?</span>
+                        <i id="faq-icon-1" class="fa-solid fa-chevron-down text-luxGold transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-1" class="hidden px-6 pb-5 adaptive-text-secondary text-sm leading-relaxed border-t adaptive-border pt-4" data-i18n="a1_text">
+                        Instead of high-heat separators that rip out vital vitamins and minerals, we curdle the whole milk, churn it slowly with an authentic wooden rayi (butter churner), and gently boil the butter over an open flame until pure golden ghee particles settle beautifully. This traditional method preserves aroma, nutrients, and texture.
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="rounded-2xl glass-panel overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(2)" class="w-full text-left px-6 py-5 flex justify-between items-center hover:bg-luxGold/5 transition-colors">
+                        <span class="adaptive-text font-medium pr-4" data-i18n="q2_text">What is the delivery timeline and cost?</span>
+                        <i id="faq-icon-2" class="fa-solid fa-chevron-down text-luxGold transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-2" class="hidden px-6 pb-5 adaptive-text-secondary text-sm leading-relaxed border-t adaptive-border pt-4" data-i18n="a2_text">
+                        We offer free delivery anywhere across India. Typically, orders leave our Morena hub within 24-48 hours and safely reach your doorstep in 3 to 7 business days depending on your location.
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="rounded-2xl glass-panel overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(3)" class="w-full text-left px-6 py-5 flex justify-between items-center hover:bg-luxGold/5 transition-colors">
+                        <span class="adaptive-text font-medium pr-4" data-i18n="q3_text">Why do you not accept product returns?</span>
+                        <i id="faq-icon-3" class="fa-solid fa-chevron-down text-luxGold transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-3" class="hidden px-6 pb-5 adaptive-text-secondary text-sm leading-relaxed border-t adaptive-border pt-4" data-i18n="a3_text">
+                        To maintain strict food safety standards and complete biological hygiene, we do not accept food products back. Once a jar leaves our secure space, we can never safely restock it. If there is transit breakage, contact us instantly via WhatsApp with an unboxing video, and we will issue a replacement immediately.
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="rounded-2xl glass-panel overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(4)" class="w-full text-left px-6 py-5 flex justify-between items-center hover:bg-luxGold/5 transition-colors">
+                        <span class="adaptive-text font-medium pr-4" data-i18n="q4_text">How does the payment and checkout work?</span>
+                        <i id="faq-icon-4" class="fa-solid fa-chevron-down text-luxGold transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-4" class="hidden px-6 pb-5 adaptive-text-secondary text-sm leading-relaxed border-t adaptive-border pt-4" data-i18n="a4_text">
+                        Since we process each order with human care, we use a hybrid UPI-WhatsApp payment mechanism. Select your ghee, enter your postal address, and dynamic UPI QR code instantly generates on your screen with your exact order value. Scan with PhonePe/GPay/Paytm, capture a screenshot of your successful transaction, and click the direct link to push the full details and address instantly to our WhatsApp.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 border-t adaptive-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
+                <!-- Left Details -->
+                <div class="space-y-8">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-luxGold font-bold" data-i18n="contact_badge">Direct Channels</span>
+                        <h2 class="font-serif text-4xl adaptive-text font-semibold mt-2" data-i18n="contact_title">Get in Touch Directly</h2>
+                        <p class="adaptive-text-secondary mt-4 leading-relaxed" data-i18n="contact_desc">
+                            Have questions regarding a bulk order, verification test, or your delivery? Reach out to us through any channel below. We respond transparently.
+                        </p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Direct Call -->
+                        <a href="tel:+919893215795" class="flex items-center gap-4 p-4 rounded-xl glass-panel hover:border-luxGold/40 transition-all group">
+                            <div class="w-12 h-12 rounded-lg bg-luxGold/10 flex items-center justify-center border border-luxGold/20">
+                                <i class="fa-solid fa-phone text-luxGold text-lg"></i>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] adaptive-text-secondary uppercase tracking-widest" data-i18n="contact_primary_lbl">Call Primary Representative</span>
+                                <span class="adaptive-text font-semibold group-hover:text-luxGold transition-colors">+91 98932 15795</span>
+                            </div>
+                        </a>
+
+                        <!-- Direct WhatsApp -->
+                        <a href="https://wa.me/919109723989" target="_blank" class="flex items-center gap-4 p-4 rounded-xl glass-panel hover:border-emerald-500/40 transition-all group">
+                            <div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
+                                <i class="fa-brands fa-whatsapp text-emerald-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] adaptive-text-secondary uppercase tracking-widest font-semibold" data-i18n="contact_wa_lbl">Direct WhatsApp Assistant</span>
+                                <span class="adaptive-text font-semibold group-hover:text-emerald-400 transition-colors">+91 91097 23989</span>
+                            </div>
+                        </a>
+
+                        <!-- Direct Email -->
+                        <a href="mailto:arogyanidhitraders@gmil.com" class="flex items-center gap-4 p-4 rounded-xl glass-panel hover:border-luxGold/40 transition-all group">
+                            <div class="w-12 h-12 rounded-lg bg-luxGold/10 flex items-center justify-center border border-luxGold/20">
+                                <i class="fa-solid fa-envelope text-luxGold text-lg"></i>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] adaptive-text-secondary uppercase tracking-widest" data-i18n="contact_email_lbl">Send Email Enquiry</span>
+                                <span class="adaptive-text font-semibold group-hover:text-luxGold transition-colors">arogyanidhitraders@gmil.com</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Details: Address Map/Fact Card -->
+                <div class="rounded-3xl glass-panel p-8 border adaptive-border flex flex-col justify-between">
+                    <div class="space-y-6">
+                        <div class="w-12 h-12 rounded-lg bg-luxGold/10 flex items-center justify-center border border-luxGold/20">
+                            <i class="fa-solid fa-map-location-dot text-luxGold text-lg"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl adaptive-text font-semibold" data-i18n="address_card_title">Registered Establishment</h3>
+                        <p class="adaptive-text-secondary leading-relaxed text-sm">
+                            <strong>ArogyaNidhi Traders</strong><br>
+                            23/233 ArogyaNidhi Traders,<br>
+                            Jahar Singh Sharma Sharma Marg,<br>
+                            Morena, Madhya Pradesh – 476001
+                        </p>
+                        
+                        <div class="p-4 rounded-xl adaptive-bg-tertiary border adaptive-border space-y-2">
+                            <span class="text-xs uppercase tracking-wider text-luxGold font-semibold block" data-i18n="bus_details_lbl">Business Details</span>
+                            <div class="flex justify-between text-xs">
+                                <span class="adaptive-text-secondary">UPI Payee ID:</span>
+                                <span class="adaptive-text font-mono">q119739563@ybl</span>
+                            </div>
+                            <div class="flex justify-between text-xs">
+                                <span class="adaptive-text-secondary">Official UPI Name:</span>
+                                <span class="adaptive-text">Arogya Nidhi Traders</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 border-t adaptive-border mt-6">
+                        <p class="text-xs adaptive-text-secondary leading-relaxed" data-i18n="address_footer_note">
+                            *Our production facility meets severe hygiene check protocols. Visiting hours are by prior booking confirmation only.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal Panel Drawer -->
+    <div id="cart-modal" class="fixed inset-0 z-50 invisible transition-all duration-300">
+        <!-- Backdrop -->
+        <div onclick="toggleCartModal()" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+        
+        <!-- Cart panel container -->
+        <div class="absolute right-0 top-0 h-full w-full max-w-md glass-panel border-l adaptive-border flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out" id="cart-panel">
+            
+            <!-- Cart Header -->
+            <div class="p-6 border-b adaptive-border flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <img src="logo.png" alt="ArogyaNidhi" class="w-8 h-8 rounded object-contain border border-luxGold/20 bg-white p-0.5">
+                    <h3 class="text-lg font-serif adaptive-text font-bold" data-i18n="cart_header_title">Your Ghee Box</h3>
+                </div>
+                <button onclick="toggleCartModal()" class="adaptive-text-secondary hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Scrollable Cart Content List -->
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4 scrollbar-hidden">
+                <!-- Dynamic Items Inserted via JavaScript -->
+                <div id="empty-cart-message" class="text-center py-12 space-y-4">
+                    <div class="w-16 h-16 rounded-full bg-luxGold/5 flex items-center justify-center border border-luxGold/15 mx-auto">
+                        <i class="fa-solid fa-cart-arrow-down text-luxGold text-xl"></i>
+                    </div>
+                    <p class="adaptive-text-secondary text-sm" data-i18n="cart_empty_msg">Your ghee basket is empty.</p>
+                    <a href="#products" onclick="toggleCartModal()" class="inline-block px-5 py-2 rounded-full border border-luxGold/20 text-xs text-luxGold font-semibold hover:bg-luxGold/10 transition-all uppercase tracking-wider" data-i18n="cart_browse_btn">Browse Selection</a>
+                </div>
+            </div>
+
+            <!-- Checkout Summary Block & Stepper Action Buttons -->
+            <div id="cart-footer" class="p-6 border-t adaptive-border adaptive-bg-tertiary hidden">
+                <div class="space-y-4 mb-6">
+                    <div class="flex justify-between text-xs adaptive-text-secondary">
+                        <span data-i18n="cart_delivery_lbl">PAN India Delivery (Standard Speed)</span>
+                        <span class="text-emerald-500 font-semibold uppercase tracking-wider" data-i18n="cart_free_lbl">Free</span>
+                    </div>
+                    <div class="flex justify-between items-baseline pt-2 border-t adaptive-border">
+                        <span class="text-sm adaptive-text font-semibold" data-i18n="cart_total_lbl">Consolidated Order Total:</span>
+                        <span id="cart-total-display" class="text-2xl font-bold font-serif text-luxGold">₹0</span>
+                    </div>
+                </div>
+
+                <button onclick="openCheckoutModal()" class="w-full py-4 rounded-xl gold-gradient-bg text-stone-900 font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg transition-all flex items-center justify-center gap-2">
+                    <span data-i18n="cart_checkout_btn">Reserve & Pay via UPI</span>
+                    <i class="fa-solid fa-angle-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal Wrapper -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 hidden items-center justify-center px-4">
+        <!-- Backdrop -->
+        <div onclick="closeCheckoutModal()" class="absolute inset-0 bg-black/90 backdrop-blur-md"></div>
+        
+        <!-- Modal Card Wrapper -->
+        <div class="relative w-full max-w-xl glass-panel border adaptive-border rounded-3xl p-6 sm:p-8 luxury-shadow z-10 max-h-[90vh] overflow-y-auto scrollbar-hidden">
+            
+            <button onclick="closeCheckoutModal()" class="absolute top-6 right-6 adaptive-text-secondary hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Steps Progress Header -->
+            <div class="flex items-center justify-center gap-4 mb-8">
+                <div id="step-indicator-1" class="flex items-center gap-2 pb-2 border-b-2 border-luxGold text-luxGold font-semibold text-xs tracking-wider uppercase">
+                    <span>01. <span data-i18n="chk_step1_lbl">Address</span></span>
+                </div>
+                <i class="fa-solid fa-angle-right adaptive-text-secondary text-xs opacity-50"></i>
+                <div id="step-indicator-2" class="flex items-center gap-2 pb-2 border-b-2 adaptive-border adaptive-text-secondary font-semibold text-xs tracking-wider uppercase">
+                    <span>02. <span data-i18n="chk_step2_lbl">UPI Payment</span></span>
+                </div>
+            </div>
+
+            <!-- Step 1 Layout: Delivery Address Form Details -->
+            <div id="checkout-step-1" class="space-y-5">
+                <div class="flex items-center gap-3">
+                    <img src="logo.png" alt="ArogyaNidhi" class="w-10 h-10 rounded object-contain border border-luxGold/20 bg-white p-0.5">
+                    <div>
+                        <h3 class="font-serif text-2xl adaptive-text font-semibold" data-i18n="chk_del_title">Delivery Details</h3>
+                        <p id="chk-order-display-step1" class="text-xs text-luxGold font-mono mt-1 font-semibold"></p>
+                    </div>
+                </div>
+                <p class="text-xs adaptive-text-secondary" data-i18n="chk_del_sub">Please supply genuine Indian delivery details. We offer completely free Pan-India shipping.</p>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-[11px] uppercase tracking-widest adaptive-text-secondary font-semibold mb-2" data-i18n="lbl_name">Full Name</label>
+                        <input id="cust-name" type="text" placeholder="e.g. Ramesh Kumar" class="w-full border adaptive-border rounded-xl px-4 py-3 text-sm adaptive-text focus:outline-none focus:border-luxGold/60 transition-colors" style="background-color: var(--input-bg);">
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] uppercase tracking-widest adaptive-text-secondary font-semibold mb-2" data-i18n="lbl_phone">Contact Mobile Number</label>
+                        <input id="cust-phone" type="tel" placeholder="e.g. 9876543210" class="w-full border adaptive-border rounded-xl px-4 py-3 text-sm adaptive-text focus:outline-none focus:border-luxGold/60 transition-colors" style="background-color: var(--input-bg);">
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] uppercase tracking-widest adaptive-text-secondary font-semibold mb-2" data-i18n="lbl_address">Complete Postal Address</label>
+                        <textarea id="cust-address" placeholder="House/Flat No, Apartment, Street name" rows="3" class="w-full border adaptive-border rounded-xl px-4 py-3 text-sm adaptive-text focus:outline-none focus:border-luxGold/60 transition-colors resize-none" style="background-color: var(--input-bg);"></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[11px] uppercase tracking-widest adaptive-text-secondary font-semibold mb-2" data-i18n="lbl_landmark">Landmark</label>
+                            <input id="cust-landmark" type="text" placeholder="e.g. Near Shiv Mandir" class="w-full border adaptive-border rounded-xl px-4 py-3 text-sm adaptive-text focus:outline-none focus:border-luxGold/60 transition-colors" style="background-color: var(--input-bg);">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] uppercase tracking-widest adaptive-text-secondary font-semibold mb-2" data-i18n="lbl_pin">Postal PIN Code</label>
+                            <input id="cust-pin" type="text" maxlength="6" placeholder="e.g. 476001" class="w-full border adaptive-border rounded-xl px-4 py-3 text-sm adaptive-text focus:outline-none focus:border-luxGold/60 transition-colors" style="background-color: var(--input-bg);">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t adaptive-border flex justify-end">
+                    <button onclick="validateAndGoToPayment()" class="px-8 py-3.5 rounded-xl gold-gradient-bg text-stone-900 font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg transition-all flex items-center gap-2">
+                        <span data-i18n="chk_next_btn">Generate UPI Payment QR</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2 Layout: Dynamic UPI QR Code, Order Fact Sheet & UTR ID Collection -->
+            <div id="checkout-step-2" class="space-y-6 hidden">
+                <div class="text-center space-y-2">
+                    <img src="logo.png" alt="Arogya Nidhi Traders" class="w-16 h-16 rounded-xl object-contain border border-luxGold/20 mx-auto shadow-md bg-white p-0.5">
+                    <h3 class="font-serif text-2xl adaptive-text font-semibold" data-i18n="chk_pay_title">Scan & Pay via UPI</h3>
+                    <p class="text-xs adaptive-text-secondary" data-i18n="chk_pay_sub">Scan this dynamic, real-time code with any active UPI application.</p>
+                </div>
+
+                <!-- Live Dynamic QR Container Frame -->
+                <div class="flex flex-col items-center justify-center p-4 rounded-2xl bg-white border border-luxGold/20 w-max mx-auto shadow-inner animate-pulse">
+                    <img id="upi-qr-image" src="" alt="Dynamic UPI QR Code" class="w-52 h-52 object-contain" />
+                    <span class="block text-[10px] text-slate-700 font-bold mt-2 tracking-widest uppercase">Payee: Arogya Nidhi Traders</span>
+                </div>
+
+                <!-- Transaction Fact Panel (Order No & Exact Amount) -->
+                <div class="p-4 rounded-xl adaptive-bg-tertiary border adaptive-border space-y-3">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="adaptive-text-secondary" data-i18n="chk_fact_ord">Order Identifier:</span>
+                        <span id="qr-order-num" class="font-mono text-luxGold font-bold"></span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs adaptive-text-secondary" data-i18n="chk_fact_amt">Exact Transaction Value:</span>
+                        <span id="qr-payable-total" class="text-xl font-bold text-luxGold font-serif">₹0</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="adaptive-text-secondary" data-i18n="chk_fact_payee">Payee ID:</span>
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-mono adaptive-text">q119739563@ybl</span>
+                            <button onclick="copyUpiId()" class="text-luxGold hover:text-white transition-colors">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mandatory UTR Field -->
+                <div class="space-y-2 p-4 rounded-xl border border-luxGold/20 adaptive-bg-secondary">
+                    <label for="cust-utr" class="block text-xs font-bold uppercase tracking-widest text-luxGold" data-i18n="lbl_utr">Enter Payment UTR / Transaction ID</label>
+                    <input id="cust-utr" type="text" placeholder="12-digit UTR (e.g. 245896325874)" class="w-full border adaptive-border rounded-xl px-4 py-3 text-sm adaptive-text focus:outline-none focus:border-luxGold/60 transition-colors uppercase font-mono" style="background-color: var(--input-bg);">
+                    <span class="text-[10px] adaptive-text-secondary block" data-i18n="utr_note">*Minimum 10 characters. Complete your transaction, copy the UTR, and paste it above.</span>
+                </div>
+
+                <!-- Action Triggers -->
+                <div class="pt-4 border-t adaptive-border grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button onclick="goToStep1()" class="py-3.5 rounded-xl border border-luxGold/30 hover:border-luxGold/80 adaptive-text font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span data-i18n="chk_back_btn">Modify Address</span>
+                    </button>
+                    <button onclick="validateUtrAndSubmit()" class="py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span data-i18n="chk_final_btn">Submit Payment</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="border-t adaptive-border pt-16 pb-8 relative overflow-hidden bg-stone-950 text-white">
+        <div class="absolute -bottom-20 -right-20 w-80 h-80 bg-luxGold/5 blur-[100px] rounded-full"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <!-- Col 1: Identity & Motto -->
+            <div class="space-y-4">
+                <a href="#" class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg overflow-hidden border border-luxGold/30 bg-white p-0.5">
+                        <img 
+                            src="logo.png" 
+                            alt="ArogyaNidhi Gold Emblem" 
+                            class="w-full h-full object-contain"
+                            onerror="this.onerror=null; this.src='https://placehold.co/100x100/0c131d/d4af37?text=ANT';"
+                        />
+                    </div>
+                    <div>
+                        <span class="block font-serif text-lg tracking-wide text-white font-bold">ArogyaNidhi</span>
+                        <span class="block text-[10px] tracking-[0.2em] uppercase text-luxGold/80" data-i18n="nav_brand_sub">Traders</span>
+                    </div>
+                </a>
+                <p class="text-xs text-stone-400 leading-relaxed max-w-xs" data-i18n="footer_desc">
+                    Pure Rayi Wood-churned (Bilona) Cow and Buffalo Ghee, freshly prepared under strict hygiene guidelines and delivered without intermediaries directly to homes.
+                </p>
+                <div class="text-xs text-luxGold font-semibold tracking-wider font-serif">
+                    "The Promise of Purity"
+                </div>
+            </div>
+
+            <!-- Col 2: Navigation Links & Policy Fact -->
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase tracking-widest text-luxGold font-semibold" data-i18n="footer_hdr_safety">Resources & Safety</h4>
+                <ul class="space-y-2 text-xs text-stone-400">
+                    <li><a href="#why-bilona" class="hover:text-luxGold transition-colors" data-i18n="footer_link_standards">Our Cooking Standards</a></li>
+                    <li><a href="#products" class="hover:text-luxGold transition-colors" data-i18n="footer_link_sizes">Select Pack Sizes</a></li>
+                    <li><a href="#faq" class="hover:text-luxGold transition-colors" data-i18n="footer_link_guide">Ordering Flow Guide</a></li>
+                    <li class="pt-2">
+                        <span class="block text-[10px] uppercase tracking-wider text-amber-500 font-semibold mb-1" data-i18n="footer_ret_lbl">Return Exclusions:</span>
+                        <span class="block text-[11px] leading-normal text-stone-400" data-i18n="footer_ret_desc">Food safety/hygiene prohibits returning food assets. Replacement provided for verified transit damage.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Direct Address Coordinates -->
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase tracking-widest text-luxGold font-semibold" data-i18n="footer_hdr_office">Registered Office</h4>
+                <p class="text-xs text-stone-400 leading-relaxed">
+                    <strong>ArogyaNidhi Traders</strong><br>
+                    23/233 ArogyaNidhi Traders,<br>
+                    Jahar Singh Sharma Marg, Morena,<br>
+                    Madhya Pradesh – 476001, India
+                </p>
+                <div class="pt-2 flex gap-4 text-sm text-stone-400">
+                    <a href="tel:+919893215795" class="hover:text-luxGold transition-colors"><i class="fa-solid fa-phone"></i></a>
+                    <a href="mailto:arogyanidhitraders@gmil.com" class="hover:text-luxGold transition-colors"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://wa.me/919109723989" target="_blank" class="hover:text-emerald-400 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright Block -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-stone-800 text-center text-xs text-stone-500">
+            <p data-i18n="footer_copy">&copy; 2026 ArogyaNidhi Traders. All Rights Reserved. Designed & Architected on Traditional Sincerity.</p>
+        </div>
+    </footer>
+
+    <script>
+        const dict = {
+            en: {
+                nav_brand_sub: "Traders",
+                nav_process: "The Process",
+                nav_products: "Our Ghee",
+                nav_philosophy: "Philosophy",
+                nav_faq: "Questions",
+                nav_contact: "Contact",
+                hero_badge: "Direct from Morena, MP",
+                hero_h1_p1: "The Ghee You Used",
+                hero_h1_p2: "To Know.",
+                hero_desc: "Many brands spend their energy trying to prove purity through marketing buzzwords. We spend ours keeping our traditional Rayi wooden-churner moving. Pure, preservative-free ghee made step-by-step at our home.",
+                val_1: "Bilona Churned",
+                val_2: "No Preservatives",
+                val_3: "Free PAN-India Delivery",
+                hero_cta_primary: "Taste Pure Ghee",
+                hero_cta_secondary: "Our Preparation Facts",
+                badge_top: "Local Heritage Sourcing",
+                badge_bot: "TRADITIONAL",
+                pledge_quote: '"Many brands spend their energy proving purity. We spend ours delivering it. If you know how to test purity, become a customer first, then judge us by what reaches your home."',
+                pledge_lbl: "Our Simple Pledge",
+                bilona_subtitle: "The Wooden Rayi (Churner) Philosophy",
+                bilona_title: "Hand-Churned. Unaltered. Real.",
+                bilona_desc: "We do not buy bulk commercial ghee nor do we use high-speed centrifuges. We use the slow, patient process of Rayi to get our shudh desi ghee.",
+                fact1_title: "Traditional Rayi Churning",
+                fact1_desc: "No high-volume direct cream shortcuts. Our ghee is prepared utilizing the time-tested wooden churning method to preserve organic integrity and authentic grain structure.",
+                fact_compromise: "No compromise",
+                fact2_title: "Zero Preservatives",
+                fact2_desc: "What you receive is raw, pure nectar. We never add colouring agents, industrial thickeners, stabilizers, or extenders. Safe, clean, and honest.",
+                fact_ingredients: "100% Honest Ingredients",
+                fact3_title: "Rigorous Kitchen Hygiene",
+                fact3_desc: "Made with extreme attention to personal cleanliness, sterilizing vessels and maintaining pristine surroundings in Morena, MP. Purity demands absolute respect.",
+                fact_devotion: "Prepared with devotion",
+                catalog_badge: "The Golden Selection",
+                catalog_title: "Select Your Craft Pack",
+                catalog_desc: "Every batch is prepared with extreme care. Pick your volume, see your transparent pricing instantly, and reserve yours via UPI & WhatsApp.",
+                cow_milk_lbl: "Desi Cow's Milk",
+                prod_cow_name: "Pure Bilona Ghee made with Desi Cow's Milk",
+                prod_cow_tagline: "Traditional Bilona Ghee made from pure Desi Cow Milk.",
+                prod_cow_desc: "Sourced from pure Desi Cow milk, slowly simmered to extract deep aroma, golden color, and healthy, naturally granulated grain structure. Ideal for everyday health and traditional Indian recipes.",
+                buffalo_milk_lbl: "Buffalo's Milk",
+                prod_buf_name: "Pure Bilona Ghee made with Buffalo Milk",
+                prod_buf_tagline: "Traditional Bilona Ghee made from pure Buffalo Milk.",
+                prod_buf_desc: "Prepared with standard premium buffalo milk cream, churned with wooden rayi. Known for its rich high-smoke cooking properties, gorgeous white-cream grain, and pure authentic taste.",
+                free_shipping: "Free Shipping Included",
+                choose_size_lbl: "Choose Volume Pack:",
+                add_to_cart_btn: "Add To Cart",
+                philosophy_badge: "Absolute Sincerity",
+                philosophy_title: "How we keep our promise",
+                philosophy_desc: "Rather than displaying bought certificates, fake testimonials, or fabricated award claims, we rely on radical honesty. We do not mass manufacture; we handle only clean quantities to prioritize hygiene and taste.",
+                pledge1_title: "Homemade Scale",
+                pledge1_desc: "Prepared and managed inside a traditional, completely sterilized kitchen environment.",
+                pledge2_title: "Direct Sourcing From Local Dairies",
+                pledge2_desc: "Sourced with scrutiny directly from Morena’s lush Chambal basin belt, legendary for highly nutritional grass-fed dairy livestock.",
+                pledge3_title: "Zero-Additive Guarantee",
+                pledge3_desc: "Pure rayi product. Absolutely no coloring agents, hydrogenated fats, synthetic scents, or stabilizers.",
+                step1_title: "Milk Sourcing",
+                step1_desc: "Pristine milk secured every single day from our trusted Morena farms.",
+                step2_title: "Wood-Churn Rayi",
+                step2_desc: "Turned at slow velocity to yield highly delicious, structured yellow/cream butter.",
+                step3_title: "Boil to Granule",
+                step3_desc: "Clarified patiently under moderate heat until golden granules completely separate.",
+                step4_title: "Aseptic Jarring",
+                step4_desc: "Poured while warm directly into tightly sealed hygienic premium jars.",
+                faq_subtitle: "Simple Direct Answers",
+                faq_title: "Answering Your Doubts",
+                q1_text: "What exactly is the wooden Rayi (Bilona) process?",
+                a1_text: "Instead of high-heat separators that rip out vital vitamins and minerals, we curdle the whole milk, churn it slowly with an authentic wooden rayi (butter churner), and gently boil the butter over an open flame until pure golden ghee particles settle beautifully. This traditional method preserves aroma, nutrients, and texture.",
+                q2_text: "What is the delivery timeline and cost?",
+                a2_text: "We offer free delivery anywhere across India. Typically, orders leave our Morena hub within 24-48 hours and safely reach your doorstep in 3 to 7 business days depending on your location.",
+                q3_text: "Why do you not accept product returns?",
+                a3_text: "To maintain strict food safety standards and complete biological hygiene, we do not accept food products back. Once a jar leaves our secure space, we can never safely restock it. If there is transit breakage, contact us instantly via WhatsApp with an unboxing video, and we will issue a replacement immediately.",
+                q4_text: "How does the payment and checkout work?",
+                a4_text: "Since we process each order with human care, we use a hybrid UPI-WhatsApp payment mechanism. Select your ghee, enter your postal address, and dynamic UPI QR code instantly generates on your screen with your exact order value. Scan with PhonePe/GPay/Paytm, capture a screenshot of your successful transaction, and click the direct link to push the full details and address instantly to our WhatsApp.",
+                contact_badge: "Direct Channels",
+                contact_title: "Get in Touch Directly",
+                contact_desc: "Have questions regarding a bulk order, verification test, or your delivery? Reach out to us through any channel below. We respond transparently.",
+                contact_primary_lbl: "Call Primary Representative",
+                contact_wa_lbl: "Direct WhatsApp Assistant",
+                contact_email_lbl: "Send Email Enquiry",
+                address_card_title: "Registered Establishment",
+                bus_details_lbl: "Business Details",
+                address_footer_note: "*Our production facility meets severe hygiene check protocols. Visiting hours are by prior booking confirmation only.",
+                cart_header_title: "Your Ghee Box",
+                cart_empty_msg: "Your ghee basket is empty.",
+                cart_browse_btn: "Browse Selection",
+                cart_delivery_lbl: "PAN India Delivery (Standard Speed)",
+                cart_free_lbl: "Free",
+                cart_total_lbl: "Consolidated Order Total:",
+                cart_checkout_btn: "Reserve & Pay via UPI",
+                chk_step1_lbl: "Address",
+                chk_step2_lbl: "UPI Payment",
+                chk_del_title: "Delivery Details",
+                chk_del_sub: "Please supply genuine Indian delivery details. We offer completely free Pan-India shipping.",
+                lbl_name: "Full Name",
+                lbl_phone: "Contact Mobile Number",
+                lbl_address: "Complete Postal Address",
+                lbl_landmark: "Landmark",
+                lbl_pin: "Postal PIN Code",
+                chk_next_btn: "Generate UPI Payment QR",
+                chk_pay_title: "Scan & Pay via UPI",
+                chk_pay_sub: "Scan this dynamic, real-time code with any active UPI application.",
+                chk_fact_ord: "Order Identifier:",
+                chk_fact_amt: "Exact Transaction Value:",
+                chk_fact_payee: "Payee ID:",
+                lbl_utr: "Enter Payment UTR / Transaction ID",
+                utr_note: "*Minimum 10 characters. Complete your transaction, copy the UTR, and paste it above.",
+                chk_back_btn: "Modify Address",
+                chk_final_btn: "Submit Payment",
+                footer_hdr_safety: "Resources & Safety",
+                footer_link_standards: "Our Cooking Standards",
+                footer_link_sizes: "Select Pack Sizes",
+                footer_link_guide: "Ordering Flow Guide",
+                footer_ret_lbl: "Return Exclusions:",
+                footer_ret_desc: "Food safety/hygiene prohibits returning food assets. Replacement provided for verified transit damage.",
+                footer_hdr_office: "Registered Office",
+                footer_desc: "Pure Rayi Wood-churned (Bilona) Cow and Buffalo Ghee, freshly prepared under strict hygiene guidelines and delivered without intermediaries directly to homes.",
+                footer_copy: "© 2026 ArogyaNidhi Traders. All Rights Reserved. Designed & Architected on Traditional Sincerity."
+            },
+            hi: {
+                nav_brand_sub: "ट्रेडर्स",
+                nav_process: "प्रक्रिया",
+                nav_products: "हमारा घी",
+                nav_philosophy: "सिद्धांत",
+                nav_faq: "प्रश्न",
+                nav_contact: "संपर्क",
+                hero_badge: "सीधे मुरैना, मध्य प्रदेश से",
+                hero_h1_p1: "वह घी जिसे आप",
+                hero_h1_p2: "जानते थे।",
+                hero_desc: "कई ब्रांड मार्केटिंग के शब्दों से शुद्धता साबित करने में ऊर्जा लगाते हैं। हम अपनी ऊर्जा पारंपरिक लकड़ी की राई (मथानी) को चालू रखने में लगाते हैं। हमारे घर पर कदम-दर-कदम तैयार किया गया शुद्ध, बिना प्रिजर्वेटिव का घी।",
+                val_1: "बिलोना मथा हुआ",
+                val_2: "कोई प्रिजर्वेटिव नहीं",
+                val_3: "पूरे भारत में मुफ्त डिलीवरी",
+                hero_cta_primary: "शुद्ध घी का स्वाद लें",
+                hero_cta_secondary: "हमारी तैयारी के तथ्य",
+                badge_top: "स्थानीय विरासत सोर्सिंग",
+                badge_bot: "पारंपरिक",
+                pledge_quote: '"कई ब्रांड शुद्धता साबित करने में अपनी ऊर्जा लगाते हैं। हम इसे आप तक पहुंचाने में लगाते हैं। यदि आप शुद्धता की जांच करना जानते हैं, तो पहले ग्राहक बनें, फिर हमारे उत्पाद से हमारा न्याय करें।"',
+                pledge_lbl: "हमारा सरल संकल्प",
+                bilona_subtitle: "लकड़ी की राई (मथानी) का सिद्धांत",
+                bilona_title: "हाथ से मथा हुआ। अपरिवर्तित। वास्तविक।",
+                bilona_desc: "हम थोक वाणिज्यिक घी नहीं खरीदते हैं और न ही हाई-स्पीड सेंट्रीफ्यूज का उपयोग करते हैं। हम अपना शुद्ध देसी घी प्राप्त करने के लिए राई की धीमी, धैर्यपूर्ण प्रक्रिया का उपयोग करते हैं।",
+                fact1_title: "पारंपरिक राई मंथन",
+                fact1_desc: "कोई शॉर्टकट नहीं। जैविक अखंडता और प्रामाणिक दानेदार संरचना को संरक्षित करने के लिए हमारा घी समय-परीक्षित लकड़ी के मंथन विधि का उपयोग करके तैयार किया जाता है।",
+                fact_compromise: "कोई समझौता नहीं",
+                fact2_title: "शून्य प्रिजर्वेटिव",
+                fact2_desc: "जो आपको मिलता है वह कच्चा, शुद्ध अमृत है। हम कभी भी रंगीन एजेंट, रासायनिक गाढ़ेपन, स्टेबलाइजर या अन्य मिलावट नहीं जोड़ते हैं। सुरक्षित, स्वच्छ और ईमानदार।",
+                fact_ingredients: "100% ईमानदार सामग्री",
+                fact3_title: "कठोर रसोई स्वच्छता",
+                fact3_desc: "मुरैना, मध्य प्रदेश में बर्तनों को स्टरलाइज़ करके और प्राचीन वातावरण बनाए रखकर व्यक्तिगत स्वच्छता पर अत्यधिक ध्यान दिया जाता है।",
+                fact_devotion: "भक्ति के साथ तैयार",
+                catalog_badge: "स्वर्ण चयन",
+                catalog_title: "अपना क्राफ्ट पैक चुनें",
+                catalog_desc: "हर बैच अत्यधिक सावधानी से तैयार किया जाता है। अपनी मात्रा चुनें, तत्काल पारदर्शी मूल्य देखें, और यूपीआई और व्हाट्सएप के माध्यम से आरक्षित करें।",
+                cow_milk_lbl: "देसी गाय का दूध",
+                prod_cow_name: "देशी गाय के दूध से बना शुद्ध बिलोना घी",
+                prod_cow_tagline: "शुद्ध देसी गाय के दूध से बना पारंपरिक बिलोना घी।",
+                prod_cow_desc: "शुद्ध देसी गाय के दूध से प्राप्त, गहरी सुगंध, सुनहरा रंग और स्वस्थ, स्वाभाविक रूप से दानेदार संरचना निकालने के लिए धीरे-धीरे उबाला जाता है। रोजमर्रा के स्वास्थ्य के लिए आदर्श।",
+                buffalo_milk_lbl: "भैंस का दूध",
+                prod_buf_name: "भैंस के दूध से बना शुद्ध बिलोना घी",
+                prod_buf_tagline: "शुद्ध भैंस के दूध से बना पारंपरिक बिलोना घी।",
+                prod_buf_desc: "मानक प्रीमियम भैंस के दूध की मलाई से तैयार, लकड़ी की राई से मथा हुआ। उच्च-धुआं खाना पकाने के गुणों और भव्य सफेद-मलाईदार दाने के लिए जाना जाता है।",
+                free_shipping: "मुफ्त शिपिंग शामिल",
+                choose_size_lbl: "पैक का आकार चुनें:",
+                add_to_cart_btn: "कार्ट में जोड़ें",
+                philosophy_badge: "पूर्ण ईमानदारी",
+                philosophy_title: "हम अपना वादा कैसे पूरा करते हैं",
+                philosophy_desc: "प्रमाणपत्रों या मनगढ़ंत दावों को दिखाने के बजाय, हम वास्तविक ईमानदारी पर भरोसा करते हैं। हम बड़े पैमाने पर निर्माण नहीं करते; स्वच्छता और स्वाद को प्राथमिकता देने के लिए केवल सीमित मात्रा संभालते हैं।",
+                pledge1_title: "घरेलू स्तर पर निर्माण",
+                pledge1_desc: "एक पारंपरिक, पूरी तरह से स्टरलाइज़्ड रसोई के वातावरण के अंदर तैयार और प्रबंधित किया जाता है।",
+                pledge2_title: "स्थानीय डेरियों से सीधी सोर्सिंग",
+                pledge2_desc: "मुरैना के चंबल बेसिन बेल्ट से सीधे सोर्स किया जाता है, जो अत्यधिक पौष्टिक मवेशियों के लिए प्रसिद्ध है।",
+                pledge3_title: "शून्य-योजक गारंटी",
+                pledge3_desc: "शुद्ध राई उत्पाद। कोई कृत्रिम रंग, हाइड्रोजनीकृत वसा, सिंथेटिक सुगंध या स्टेबलाइज़र नहीं।",
+                step1_title: "दूध की सोर्सिंग",
+                step1_desc: "हमारे विश्वसनीय मुरैना फार्मों से हर दिन शुद्ध दूध प्राप्त किया जाता है।",
+                step2_title: "लकड़ी-मंथन राई",
+                step2_desc: "अत्यधिक स्वादिष्ट, दानेदार मक्खन प्राप्त करने के लिए धीमी गति से मथा जाता है।",
+                step3_title: "दानेदार होने तक उबालना",
+                step3_desc: "सुनहरे दाने पूरी तरह से अलग होने तक मध्यम आँच पर धैर्यपूर्वक उबाला जाता है।",
+                step4_title: "स्वच्छ जारिंग",
+                step4_desc: "गर्म होने पर सीधे कड़े सील वाले स्वच्छ जार में डाला जाता है।",
+                faq_subtitle: "सरल सीधे उत्तर",
+                faq_title: "आपकी शंकाओं का समाधान",
+                q1_text: "लकड़ी की राई (बिलोना) प्रक्रिया क्या है?",
+                a1_text: "उच्च-ताप विभाजकों के बजाय, जो महत्वपूर्ण विटामिनों को नष्ट कर देते हैं, हम दूध को जमाते हैं, इसे लकड़ी की राई से धीरे-धीरे मथते हैं, और मक्खन को खुली आंच पर उबालते हैं जब तक कि सुनहरे घी के कण अलग न हो जाएं।",
+                q2_text: "डिलीवरी का समय और लागत क्या है?",
+                a2_text: "हम पूरे भारत में मुफ्त डिलीवरी प्रदान करते हैं। आमतौर पर, ऑर्डर 24-48 घंटों के भीतर हमारे मुरैना केंद्र से निकल जाते हैं और 3 से 7 दिनों में आप तक पहुँच जाते हैं।",
+                q3_text: "आप वापसी स्वीकार क्यों नहीं करते?",
+                a3_text: "खाद्य सुरक्षा बनाए रखने के लिए, हम खाद्य उत्पादों की वापसी स्वीकार नहीं करते हैं। यदि रास्ते में कोई टूट-फूट होती है, तो अनबॉक्सिंग वीडियो के साथ हमसे संपर्क करें, हम तुरंत रिप्लेसमेंट देंगे।",
+                q4_text: "भुगतान और चेकआउट कैसे काम करता है?",
+                a4_text: "हम एक हाइब्रिड यूपीआई-व्हाट्सएप भुगतान तंत्र का उपयोग करते हैं। अपना घी चुनें, पता दर्ज करें, और यूपीआई क्यूआर कोड आपकी स्क्रीन पर आ जाएगा। स्कैन कर भुगतान करें, स्क्रीनशॉट लें, और विवरण व्हाट्सएप पर भेजें।",
+                contact_badge: "सीधे संपर्क सूत्र",
+                contact_title: "सीधे संपर्क करें",
+                contact_desc: "थोक ऑर्डर, शुद्धता परीक्षण या डिलीवरी के संबंध में कोई प्रश्न है? नीचे दिए गए किसी भी माध्यम से हमसे संपर्क करें।",
+                contact_primary_lbl: "मुख्य प्रतिनिधि को कॉल करें",
+                contact_wa_lbl: "व्हाट्सएप सहायक",
+                contact_email_lbl: "ईमेल पूछताछ",
+                address_card_title: "पंजीकृत प्रतिष्ठान",
+                bus_details_lbl: "व्यापार विवरण",
+                address_footer_note: "*हमारी उत्पादन इकाई सख्त स्वच्छता नियमों का पालन करती है। यात्रा केवल पूर्व बुकिंग के बाद ही संभव है।",
+                cart_header_title: "आपका घी बॉक्स",
+                cart_empty_msg: "आपकी टोकरी खाली है।",
+                cart_browse_btn: "उत्पाद देखें",
+                cart_delivery_lbl: "अखिल भारतीय डिलीवरी (मानक गति)",
+                cart_free_lbl: "मुफ्त",
+                cart_total_lbl: "कुल ऑर्डर राशि:",
+                cart_checkout_btn: "यूपीआई द्वारा आरक्षित और भुगतान करें",
+                chk_step1_lbl: "पता",
+                chk_step2_lbl: "यूपीआई भुगतान",
+                chk_del_title: "वितरण विवरण",
+                chk_del_sub: "कृपया सही भारतीय डिलीवरी विवरण प्रदान करें। हम मुफ्त अखिल भारतीय डिलीवरी प्रदान करते हैं।",
+                lbl_name: "पूरा नाम",
+                lbl_phone: "संपर्क मोबाइल नंबर",
+                lbl_address: "पूरा डाक पता",
+                lbl_landmark: "लैंडमार्क (पहचान चिन्ह)",
+                lbl_pin: "डाक पिन कोड",
+                chk_next_btn: "यूपीआई भुगतान क्यूआर उत्पन्न करें",
+                chk_pay_title: "यूपीआई के माध्यम से भुगतान करें",
+                chk_pay_sub: "किसी भी सक्रिय यूपीआई ऐप के साथ इस गतिशील क्यूआर कोड को स्कैन करें।",
+                chk_fact_ord: "ऑर्डर कोड:",
+                chk_fact_amt: "सटीक भुगतान राशि:",
+                chk_fact_payee: "प्राप्तकर्ता आईडी:",
+                lbl_utr: "भुगतान UTR / ट्रांजैक्शन आईडी दर्ज करें",
+                utr_note: "*न्यूनतम 10 अक्षर। भुगतान पूरा करें, यूटीआर कॉपी करें और ऊपर पेस्ट करें।",
+                chk_back_btn: "पता बदलें",
+                chk_final_btn: "भुगतान जमा करें",
+                footer_hdr_safety: "संसाधन और सुरक्षा",
+                footer_link_standards: "हमारे खाना पकाने के मानक",
+                footer_link_sizes: "पैक आकार चुनें",
+                footer_link_guide: "ऑर्डर गाइड",
+                footer_ret_lbl: "वापसी अपवाद:",
+                footer_ret_desc: "खाद्य सुरक्षा नियमों के कारण भोजन की वापसी संभव नहीं है। नुकसान होने पर रिप्लेसमेंट दिया जाएगा।",
+                footer_hdr_office: "पंजीकृत कार्यालय",
+                footer_desc: "पारंपरिक स्वच्छता दिशानिर्देशों के तहत तैयार शुद्ध राई लकड़ी से मथा हुआ (बिलोना) गाय और भैंस का घी।",
+                footer_copy: "© 2026 आरोग्यनिधि ट्रेडर्स। सर्वाधिकार सुरक्षित।"
+            },
+            mr: {
+                nav_brand_sub: "ट्रेडर्स",
+                nav_process: "प्रक्रिया",
+                nav_products: "आमचे तूप",
+                nav_philosophy: "तत्त्वज्ञान",
+                nav_faq: "प्रश्न",
+                nav_contact: "संपर्क",
+                hero_badge: "थेट मुरैना, मध्य प्रदेश मधून",
+                hero_h1_p1: "जे तूप आपण पूर्वी",
+                hero_h1_p2: "वापरत होता.",
+                hero_desc: "अनेक ब्रँड्स शुद्धता सिद्ध करण्यासाठी जाहिरातींवर भर देतात. आम्ही पारंपरिक लाकडी घुसळण (रवी) चालू ठेवण्यावर भर देतो. आमच्या घरी अत्यंत स्वच्छतेने तयार केलेले शुद्ध, प्रिजर्वेटिव्ह-मुक्त तूप.",
+                val_1: "बिलोना पद्धतीचे",
+                val_2: "नो प्रिजर्वेटिव्ह",
+                val_3: "भारतभर मोफत डिलिव्हरी",
+                hero_cta_primary: "शुद्ध तुपाची चव घ्या",
+                hero_cta_secondary: "आमच्या तुपाचे वैशिष्ट्य",
+                badge_top: "स्थानिक वारसा सोर्सिंग",
+                badge_bot: "पारंपरिक",
+                pledge_quote: '"अनेक ब्रँड शुद्धता सिद्ध करण्यात ऊर्जा घालवतात. आम्ही ती पोहोचवण्यात घालवतो. तुम्हाला शुद्धता तपासता येत असेल, तर आधी ग्राहक बना, मग तुपाची गुणवत्ता ठरवा."',
+                pledge_lbl: "आमचे साधे वचन",
+                bilona_subtitle: "लाकडी रवीचे तत्त्वज्ञान",
+                bilona_title: "हात-घुसळणीचे. नैसर्गिक. अस्सल.",
+                bilona_desc: "आम्ही बाजारातील तूप विकत घेत नाही किंवा हाय-स्पीड मशीन वापरत नाही. आम्ही तूप मिळवण्यासाठी पारंपरिक रवी पद्धतीचा वापर करतो.",
+                fact1_title: "पारंपरिक रवी घुसळण",
+                fact1_desc: "कोणताही शॉर्टकट नाही. नैसर्गिक गुणवत्ता आणि अस्सल दाणेदार पोत राखण्यासाठी पारंपरिक पद्धतीचा वापर केला जातो.",
+                fact_compromise: "तडजोड नाही",
+                fact2_title: "प्रिजर्वेटिव्ह-मुक्त तूप",
+                fact2_desc: "तुम्हाला मिळणारे तूप पूर्णपणे नैसर्गिक आहे. यामध्ये कोणतेही रंग, रासायनिक घटक किंवा फ्लेवर वापरले जात नाहीत.",
+                fact_ingredients: "१००% अस्सल घटक",
+                fact3_title: "कठोर स्वच्छता",
+                fact3_desc: "मुरैना, मध्य प्रदेश येथे भांडी निर्जंतुक करून आणि अत्यंत स्वच्छ वातावरणात तूप तयार केले जाते.",
+                fact_devotion: "भक्तीने आणि श्रद्धेने तयार",
+                catalog_badge: "सुवर्ण निवड",
+                catalog_title: "तुमचा पॅक निवडा",
+                catalog_desc: "प्रत्येक बॅच अत्यंत काळजीपूर्वक तयार केली जाते. तुमचे प्रमाण निवडा, पारदर्शक किंमत पहा आणि यूपीआय आणि व्हॉट्सॲपद्वारे बुक करा.",
+                cow_milk_lbl: "देशी गायीचे दूध",
+                prod_cow_name: "देशी गायीच्या दुधापासून बनवलेले शुद्ध बिलोना तूप",
+                prod_cow_tagline: "देशी गायीच्या दुधापासून बनवलेले पारंपरिक बिलोना तूप.",
+                prod_cow_desc: "शुद्ध देशी गायीच्या दुधापासून बनवलेले, दाणेदार पोत आणि उत्कृष्ट सुगंध असलेले पारंपरिक तूप.",
+                buffalo_milk_lbl: "म्हशीचे दूध",
+                prod_buf_name: "म्हशीच्या दुधापासून बनवलेले शुद्ध बिलोना तूप",
+                prod_buf_tagline: "शुद्ध म्हशीच्या दुधापासून बनवलेले पारंपरिक बिलोना तूप.",
+                prod_buf_desc: "उत्कृष्ट मलाईदार दाणेदार म्हशीचे तूप, लाकडी रवीने मथलेले. स्वयंपाकासाठी आणि आरोग्यासाठी अत्यंत फायदेशीर.",
+                free_shipping: "मोफत शिपिंग समाविष्ट",
+                choose_size_lbl: "पॅक निवडा:",
+                add_to_cart_btn: "कार्टमध्ये जोडा",
+                philosophy_badge: "पूर्ण प्रामाणिकपणा",
+                philosophy_title: "आम्ही आमचे वचन कसे पाळतो",
+                philosophy_desc: "खोटे प्रमाणपत्र दाखवण्यापेक्षा आम्ही प्रामाणिकपणावर विश्वास ठेवतो. आम्ही व्यावसायिक उत्पादन करत नाही, तर गुणवत्ता टिकवून ठेवण्यासाठी कमी प्रमाणात तूप तयार करतो.",
+                pledge1_title: "घरगुती स्तरावर निर्मिती",
+                pledge1_desc: "घरच्या स्वच्छ आणि पूर्णपणे निर्जंतुक केलेल्या स्वयंपाकघरात तूप तयार केले जाते.",
+                pledge2_title: "थेट दूध खरेदी",
+                pledge2_desc: "मुरैनाच्या चंबळ खोऱ्यातील पौष्टिक चारा खाणाऱ्या गुरांचे दूध थेट खरेदी केले जाते.",
+                pledge3_title: "केमिकल-मुक्त तूप",
+                pledge3_desc: "पूर्णपणे शुद्ध रवी तूप. कोणतेही रंग, डालडा किंवा कृत्रिम सुगंध नसलेले.",
+                step1_title: "दूध संकलन",
+                step1_desc: "आमच्या विश्वासू फार्ममधून दररोज शुद्ध दूध संकलित केले जाते.",
+                step2_title: "लाकडी रवी मंथन",
+                step2_desc: "उत्कृष्ट लोणी मिळवण्यासाठी अत्यंत संथ गतीने लाकडी रवीने दूध घुसळले जाते.",
+                step3_title: "कढवणे",
+                step3_desc: "तूप दाणेदार होईपर्यंत मध्यम आचेवर लोणी अत्यंत संयमाने कढवले जाते.",
+                step4_title: "पॅकिंग",
+                step4_desc: "तूप कोमट असतानाच ते थेट स्वच्छ हवाबंद बरण्यांमध्ये भरले जाते.",
+                faq_subtitle: "नेहमी विचारले जाणारे प्रश्न",
+                faq_title: "तुमच्या प्रश्नांची उत्तरे",
+                q1_text: "लाकडी रवी (बिलोना) प्रक्रिया काय आहे?",
+                a1_text: "दूध कढवून त्याचे दही बनवून, ते लाकडी रवीने घुसळले जाते आणि तयार झालेले लोणी मंद आचेवर कढवून शुद्ध तूप मिळवले जाते.",
+                q2_text: "डिलिव्हरीची वेळ आणि खर्च किती आहे?",
+                a2_text: "आम्ही संपूर्ण भारतात मोफत डिलिव्हरी देतो. साधारण २-३ दिवसांत ऑर्डर रवाना होते आणि ५-७ दिवसांत पोहोचते.",
+                q3_text: "तुम्ही परतावा का स्वीकारत नाही?",
+                a3_text: "अन्न सुरक्षेसाठी आम्ही तूप परत घेत नाही. डिलिव्हरी दरम्यान नुकसान झाल्यास अनबॉक्सिंग व्हिडिओ पाठवीत या, आम्ही नवीन पॅक पाठवू.",
+                q4_text: "पेमेंट आणि चेकआउट कसे होते?",
+                a4_text: "आम्ही युपीआय आणि व्हॉट्सॲप प्रणाली वापरतो. तूप निवडा, पत्ता भरा, युपीआय क्यूआर कोड स्कॅन करा आणि स्क्रीनशॉट व्हॉट्सॲपवर पाठवा.",
+                contact_badge: "थेट संपर्क मार्ग",
+                contact_title: "थेट संपर्क साधा",
+                contact_desc: "घाऊक ऑर्डर किंवा शुद्धतेबद्दल काही प्रश्न असल्यास खालील मार्गांनी संपर्क साधा.",
+                contact_primary_lbl: "मुख्य प्रतिनिधीला कॉल करा",
+                contact_wa_lbl: "व्हॉट्सॲप असिस्टंट",
+                contact_email_lbl: "ईमेल पाठवा",
+                address_card_title: "पंजीकृत कार्यालय",
+                bus_details_lbl: "व्यवसाय तपशील",
+                address_footer_note: "*आमच्या कारखान्यात स्वच्छतेचे काटेकोर नियम पाळले जातात. भेट देण्यापूर्वी वेळ ठरवणे आवश्यक आहे.",
+                cart_header_title: "तुमचा बॉक्स",
+                cart_empty_msg: "तुमचे तूप बॉक्स रिकामे आहे.",
+                cart_browse_btn: "उत्पादने पहा",
+                cart_delivery_lbl: "भारतभर डिलिव्हरी",
+                cart_free_lbl: "मोफत",
+                cart_total_lbl: "एकूण रक्कम:",
+                cart_checkout_btn: "आरक्षित करा आणि युपीआय पेमेंट करा",
+                chk_step1_lbl: "पत्ता",
+                chk_step2_lbl: "युपीआय पेमेंट",
+                chk_del_title: "वितरण तपशील",
+                chk_del_sub: "कृपया अचूक पत्ता भरा. संपूर्ण भारतात मोफत डिलिव्हरी उपलब्ध आहे.",
+                lbl_name: "पूर्ण नाव",
+                lbl_phone: "मोबाईल नंबर",
+                lbl_address: "पूर्ण पत्ता",
+                lbl_landmark: "जवळची खूण",
+                lbl_pin: "पिन कोड",
+                chk_next_btn: "युपीआय क्यूआर कोड तयार करा",
+                chk_pay_title: "युपीआय द्वारे पेमेंट करा",
+                chk_pay_sub: "कोणत्याही युपीआय ॲपद्वारे स्कॅन करून पेमेंट पूर्ण करा.",
+                chk_fact_ord: "ऑर्डर कोड:",
+                chk_fact_amt: "अचूक रक्कम:",
+                chk_fact_payee: "प्राप्तकर्ता आयडी:",
+                lbl_utr: "पेमेंट UTR / ट्रांजॅक्शन आयडी भरा",
+                utr_note: "*न्यूनतम १० अक्षरे. पेमेंट पूर्ण झाल्यावर यूटीआर नंबर येथे भरा.",
+                chk_back_btn: "पत्ता बदला",
+                chk_final_btn: "पेमेंट जमा करा",
+                footer_hdr_safety: "सुरक्षा आणि धोरण",
+                footer_link_standards: "स्वच्छतेचे निकष",
+                footer_link_sizes: "तूप पॅकचे आकार",
+                footer_link_guide: "ऑर्डर कशी करावी",
+                footer_ret_lbl: "परतावा नियम:",
+                footer_ret_desc: "सुरक्षेच्या कारणास्तव खाद्यपदार्थ परत घेतले जात नाहीत. नुकसानीची भरपाई केली जाईल.",
+                footer_hdr_office: "पंजीकृत कार्यालय",
+                footer_desc: "मुरैना येथील पारंपरिक स्वच्छता नियमांचे पालन करून लाकडी रवीने मथलेले (बिलोना) शुद्ध तूप.",
+                footer_copy: "© 2026 आरोग्यनिधि ट्रेडर्स। सर्व हक्क राखीव."
+            },
+            gu: {
+                nav_brand_sub: "ટ્રેડર્સ",
+                nav_process: "પ્રક્રિયા",
+                nav_products: "અમારું ઘી",
+                nav_philosophy: "ફિલસૂફી",
+                nav_faq: "પ્રશ્નો",
+                nav_contact: "સંપર્ક",
+                hero_badge: "મોરેના, એમપીથી સીધું",
+                hero_h1_p1: "તમે જાણતા હતા",
+                hero_h1_p2: "તે ઘી.",
+                hero_desc: "ઘણી બ્રાન્ડ્સ તેમની શક્તિ શુદ્ધતા સાબિત કરવામાં વિતાવે છે. અમે અમારું પરંપરાગત વલોણું ચલાવવામાં વિતાવીએ છીએ. શુદ્ધ, પ્રિઝર્વેટિવ મુક્ત હોમમેઇડ ઘી.",
+                val_1: "વલોણાનું ઘી",
+                val_2: "કોઈ પ્રિઝર્વેટિવ્સ નહીં",
+                val_3: "સમગ્ર ભારતમાં ફ્રી ડિલિવરી",
+                hero_cta_primary: "શુદ્ધ ઘીનો સ્વાદ લો",
+                hero_cta_secondary: "અમારી માહિતી",
+                badge_top: "સ્થાનિક સોર્સિંગ",
+                badge_bot: "પરંપરાગત",
+                pledge_quote: '"અમે શુદ્ધતા પહોંચાડવામાં માનીએ છીએ. પહેલા ગ્રાહક બનો, પછી ગુણવત્તા નક્કી કરો."',
+                pledge_lbl: "અમારું સરળ વચન"
+            },
+            pa: {
+                nav_brand_sub: "ਟਰੇਡਰਜ਼",
+                nav_process: "ਪ੍ਰਕਿਰਿਆ",
+                nav_products: "Sadi Ghee",
+                nav_philosophy: "Philosophy",
+                nav_faq: "Questions",
+                nav_contact: "Contact",
+                hero_badge: "ਮੋਰੈਨਾ, ਐਮਪੀ ਤੋਂ ਸਿੱਧਾ",
+                hero_h1_p1: "ਉਹ ਘਿਓ ਜਿਸਨੂੰ ਤੁਸੀਂ",
+                hero_h1_p2: "ਜਾਣਦੇ ਸੀ।",
+                hero_desc: "ਕਈ ਬ੍ਰਾਂਡ ਸ਼ੁੱਧਤਾ ਸਾਬਤ ਕਰਨ ਵਿੱਚ ਆਪਣੀ ਤਾਕਤ ਲਗਾਉਂਦੇ ਹਨ। ਅਸੀਂ ਰਵਾਇਤੀ ਮਧਾਣੀ ਚਲਾਉਣ ਵਿੱਚ ਲਗਾਉਂਦੇ ਹਾਂ।",
+                val_1: "ਬਿਲੋਨਾ ਘਿਓ",
+                val_2: "ਕੋਈ ਪ੍ਰਿਜ਼ਰਵੇਟਿਵ ਨਹੀਂ",
+                val_3: "ਪੂਰੇ ਭਾਰਤ ਵਿੱਚ ਮੁਫ਼ਤ ਡਿਲਿવਰੀ",
+                hero_cta_primary: "ਸ਼ੁੱਧ ਘਿਓ ਦਾ ਸਵਾਦ ਲਓ",
+                hero_cta_secondary: "ਸਾਡੇ ਤੱਥ",
+                badge_top: "ਸਥਾਨਕ ਸੋਰਸਿੰग",
+                badge_bot: "ਰਵਾਇਤੀ",
+                pledge_quote: '"ਅਸੀਂ ਸ਼ੁੱਧਤਾ ਪ੍ਰਦਾਨ ਕਰਨ ਵਿੱਚ ਵਿਸ਼ਵਾਸ ਰੱਖਦੇ ਹਾਂ। ਪਹਿਲਾਂ ਗਾਹਕ ਬਣੋ, ਫਿਰ ਪਰਖੋ।"',
+                pledge_lbl: "ਸਾਡਾ ਵਚਨ"
+            },
+            bn: {
+                nav_brand_sub: "ট্রেডার্স",
+                nav_process: "প্রক্রিয়া",
+                nav_products: "আমাদের ঘি",
+                nav_philosophy: "দর্শন",
+                nav_faq: "প্রশ্ন",
+                nav_contact: "যোগাযোগ",
+                hero_badge: "সরাসরি মোরেনা, এমপি থেকে",
+                hero_h1_p1: "যে ঘি আপনি",
+                hero_h1_p2: "জানতেন।",
+                hero_desc: "অনেক ব্র্যান্ড শুদ্ধতা প্রমাণ করতে ব্যস্ত থাকে। আমরা আমাদের ঐতিহ্যবাহী কাঠের মন্থন সচল রাখতে ব্যস্ত থাকি।",
+                val_1: "বিলোনা মন্থন",
+                val_2: "কোন প্রিজারভেটিভ নেই",
+                val_3: "পুরো ভারতে ফ্রি ডেলিভারি",
+                hero_cta_primary: "খাঁটি ঘিয়ের স্বাদ নিন",
+                hero_cta_secondary: "আমাদের তথ্য",
+                badge_top: "স্থানীয় সোর্সিং",
+                badge_bot: "ঐতিহ্যবাহী",
+                pledge_quote: '"শুদ্ধতা প্রমাণে নয়, তা পৌঁছানোতেই আমাদের শক্তি। প্রথমে গ্রাহক হন, তারপর বিচার করুন।"',
+                pledge_lbl: "আমাদের অঙ্গীকার"
+            },
+            ta: {
+                nav_brand_sub: "டிரேடர்ஸ்",
+                nav_process: "தயாரிப்பு முறை",
+                nav_products: "எங்கள் நெய்",
+                nav_philosophy: "தத்துவம்",
+                nav_faq: "கேள்விகள்",
+                nav_contact: "தொடர்பு",
+                hero_badge: "நேரடியாக மொரேனா, எம்பி லிருந்து",
+                hero_h1_p1: "நீங்கள் அறிந்த",
+                hero_h1_p2: "அதே நெய்.",
+                hero_desc: "பல பிராண்டுகள் தங்கள் தூய்மையை நிரூபிக்க விளம்பரம் செய்கின்றன. நாங்கள் பாரம்பரிய மர மத்தினால் நெய்யை தயாரிக்கிறோம்.",
+                val_1: "பிலোনা நெய்",
+                val_2: "பாதுகாப்பு இரசாயனம் இல்லை",
+                val_3: "இந்தியா முழுவதும் இலவச டெலிவரி",
+                hero_cta_primary: "தூய நெய்யை சுவையுங்கள்",
+                hero_cta_secondary: "தயாரிப்பு உண்மைகள்",
+                badge_top: "உள்ளூர் தயாரிப்பு",
+                badge_bot: "பாரம்பரியம்",
+                pledge_quote: '"தூய்மையை நிரூபிப்பதை விட கொண்டு சேர்ப்பதே முக்கியம். முதலில் வாங்கிப் பாருங்கள், பின் முடிவு செய்யுங்கள்."',
+                pledge_lbl: "எங்கள் உறுதிமொழி"
+            },
+            te: {
+                nav_brand_sub: "ట్రేడర్స్",
+                nav_process: "తయారీ విధానం",
+                nav_products: "మా నెయ్యి",
+                nav_philosophy: "సిద్ధాంతం",
+                nav_faq: "ప్రశ్నలు",
+                nav_contact: "సంప్రదించండి",
+                hero_badge: "నేరుగా మొరేనా, ఎంబీ నుండి",
+                hero_h1_p1: "మీరు ఎరిగిన",
+                hero_h1_p2: "అసలైన నెయ్యి.",
+                hero_desc: "అనేక బ్రాండ్లు ప్రకటనలతో శుద్ధతను నిరూపిస్తాయి. మేము సాంప్రదాయ పద్ధతిలో కవ్వంతో చిలికి తయారు చేస్తాము.",
+                val_1: "బిలోనా నెయ్యి",
+                val_2: "ఎటువంటి రసాయనాలు లేవు",
+                val_3: "భారతదేశమంతటా ఉచిత డెలివరీ",
+                hero_cta_primary: "నిజమైన నెయ్యి రుచి చూడండి",
+                hero_cta_secondary: "తయారీ విశేషాలు",
+                badge_top: "స్థానిక సేకరణ",
+                badge_bot: "సాంప్రదాయ",
+                pledge_quote: '"మా శక్తిని నిరూపించడంలో కాదు, అందించడంలో ఉపयोగిస్తాం. మొదట అనుభవించి చూడండి, ఆపై నిర్ణయించండి."',
+                pledge_lbl: "మా ప్రమాణము"
+            },
+            kn: {
+                nav_brand_sub: "ಟ್ರೇಡರ್ಸ್",
+                nav_process: "ತಯಾರಿಕೆ",
+                nav_products: "ನಮ್ಮ ತುಪ್ಪ",
+                nav_philosophy: "ತತ್ತ್ವಶಾಸ್ತ್ರ",
+                nav_faq: "ಪ್ರಶ್ನೆಗಳು",
+                nav_contact: "ಸಂಪರ್ಕಿಸಿ",
+                hero_badge: "ನೇರವಾಗಿ ಮೊರೇನಾ, ಎಂಪಿಯಿಂದ",
+                hero_h1_p1: "ನೀವು ತಿಳಿದಿರುವ",
+                hero_h1_p2: "ತುಪ್ಪ.",
+                hero_desc: "ಅನೇಕ ಬ್ರಾಂಡ್‌ಗಳು ಜಾಹೀರಾತುಗಳಲ್ಲಿ ಶುದ್ಧತೆಯನ್ನು ತೋರಿಸುತ್ತವೆ. ನಾವು ನಮ್ಮ ಸಾಂಪ್ರದाइवಿಕ ಮರದ ಕದಡುವಿಕೆಯನ್ನು ನಂಬುತ್ತೇವೆ.",
+                val_1: "ಬಿಲೋನಾ ತುಪ್ಪ",
+                val_2: "ಯಾವುದೇ ರಾಸಾಯನಿಕಗಳಿಲ್ಲ",
+                val_3: "ಭಾರತದಾದ್ಯಂತ ಉಚಿತ ವಿತರಣೆ",
+                hero_cta_primary: "ಶುದ್ಧ ತುಪ್ಪ ಸವಿಯಿರಿ",
+                hero_cta_secondary: "ನಮ್ಮ ಮಾಹಿತಿ",
+                badge_top: "ಸ್ಥಳೀಯ ಸೋರ್ಸಿಂಗ್",
+                badge_bot: "ಸಾಂಪ್ರದಾಯಿಕ",
+                pledge_quote: '"ಶುದ್ಧತೆಯನ್ನು ಒದಗಿಸುವುದೇ ನಮ್ಮ ಗುರಿ. ಮೊದಲು ಗ್ರಾಹಕರಾಗಿ, ನಂತರ ನೀವೇ ನಿರ್ಧರಿಸಿ."',
+                pledge_lbl: "ನಮ್ಮ ಭರವಸೆ"
+            },
+            ml: {
+                nav_brand_sub: "ട്രേഡേഴ്സ്",
+                nav_process: "നിർമ്മാണ രീതി",
+                nav_products: "ഞങ്ങളുടെ നെയ്യ്",
+                nav_philosophy: "തത്വം",
+                nav_faq: "ചോദ്യങ്ങൾ",
+                nav_contact: "ബന്ധപ്പെടുക",
+                hero_badge: "നേരിട്ട് മൊറേന, എംപിയിൽ നിന്ന്",
+                hero_h1_p1: "നിങ്ങൾ അറിഞ്ഞ",
+                hero_h1_p2: "അതേ നെയ്യ്.",
+                hero_desc: "പരസ്യങ്ങൾ കൊണ്ടല്ല, ഗുണമേന്മ കൊണ്ടാണ് ഞങ്ങൾ ശുദ്ധി തെളിയിക്കുന്നത്. പരമ്പരാഗത രീതിയിൽ ഉണ്ടാക്കിയ ശുദ്ധമായ നെയ്യ്.",
+                val_1: "ബിലോണ നെയ്യ്",
+                val_2: "പ്രിസർവേറ്റീവ്സ് ഇല്ല",
+                val_3: "ഇന്ത്യയിലുടനീളം സൌജന്യ ഡെലിവറി",
+                hero_cta_primary: "ശുദ്ധമായ നെയ്യ് രുചിക്കൂ",
+                hero_cta_secondary: "നിർമ്മാണ വിവരങ്ങൾ",
+                badge_top: "പ്രാദേശിക ഉറവിടം",
+                badge_bot: "പാരമ്പര്യം",
+                pledge_quote: '"വിശ്വാസ്യത ഞങ്ങൾ നേരിട്ട് എത്തിക്കുന്നു. ആദ്യം വാങ്ങി അനുഭവിച്ചറിയൂ, പിന്നീട് വിലയിരുത്തൂ."',
+                pledge_lbl: "ഞങ്ങളുടെ ഉറപ്പ്"
+            },
+            or: {
+                nav_brand_sub: "ଟ୍ରେଡର୍ସ",
+                nav_process: "ପ୍ରକ୍ରିୟା",
+                nav_products: "ଆମ ଘିଅ",
+                nav_philosophy: "ଦର୍ଶନ",
+                nav_faq: "ପ୍ରଶ୍ନ",
+                nav_contact: "ଯୋଗାଯୋଗ",
+                hero_badge: "ସିଧାସଳଖ ମୋରେନା, ଏମପିରୁ",
+                hero_h1_p1: "ଆପڻ ଜାଣିଥିବା",
+                hero_h1_p2: "ସେହି ଘିଅ।",
+                hero_desc: "ଅନେକ ବ୍ରାଣ୍ଡ ବିଜ୍ଞାପନ ଦ୍ୱାରା ଶୁଦ୍ଧତା ପ୍ରମାଣ କରନ୍ତି। ଆମେ ପାରମ୍ପରିକ କାଠ ମନ୍ଥନ ଦ୍ୱାରା ଏହା ପ୍ରସ୍ତୁତ କରୁ।",
+                val_1: "ବିଲୋନା ଘିଅ",
+                val_2: "କୌଣସି ପ୍ରିଜରଭେଟିଭ୍ ନାହିଁ",
+                val_3: "ସମଗ୍ର ଭାରତରେ ମାଗଣା ବିତରଣ",
+                hero_cta_primary: "ଶୁଦ୍ଧ ଘିଅର ସ୍ୱାଦ ନିଅନ୍ତು",
+                hero_cta_secondary: "ଆମର ତଥ୍ୟ",
+                badge_top: "ସ୍ଥାନୀୟ ସୋର୍ସିଂ",
+                badge_bot: "ପାରମ୍ପରିକ",
+                pledge_quote: '"ଶୁଦ୍ଧତା ପ୍ରଦାନ କରିବା ଆମର ଲକ୍ଷ୍ୟ। ପ୍ରଥମେ ଗ୍ରାହକ ହୁଅନ୍ତୁ, ପରେ ବିଚାର କରନ୍ତୁ।"',
+                pledge_lbl: "ଆମର ପ୍ରତିଜ୍ଞା"
+            },
+            as: {
+                nav_brand_sub: "ট্ৰেডাৰ্ছ",
+                nav_process: "প্ৰক্ৰিয়া",
+                nav_products: "আমাৰ ঘিউ",
+                nav_philosophy: "দৰ্শন",
+                nav_faq: "প্ৰশ্নসমূহ",
+                nav_contact: "যোগাযোগ",
+                hero_badge: "পোনপটীয়াকৈ মোৰেনা, এমপি পৰা",
+                hero_h1_p1: "আপুনি জনা",
+                hero_h1_p2: "সেই ঘিউ।",
+                hero_desc: "বহু ব্ৰাণ্ডে বিজ্ঞাপনৰ দ্বাৰা শুদ্ধতা প্ৰমাণ কৰে। আমি আমাৰ পৰম্পৰাগত কাঠৰ মন্থন সচল ৰাখোঁ।",
+                val_1: "বিলোনা ঘিউ",
+                val_2: "কোনো প্ৰিজাৰভেটিভ নাই",
+                val_3: "সমগ্ৰ ভাৰতত বিনামূলীয়া ডেলিভাৰী",
+                hero_cta_primary: "খাঁটি ঘিউৰ সোৱাদ লওক",
+                hero_cta_secondary: "আমাৰ তথ্য",
+                badge_top: "স্থানীয় উৎস",
+                badge_bot: "পৰম্পৰাগত",
+                pledge_quote: '"শুদ্ধতা প্ৰমাণত নহয়, যোগান ধৰাতহে আমাৰ শক্তি। প্ৰথমে গ্ৰাহক হওক, তাৰ পিছত বিচাৰ কৰক।"',
+                pledge_lbl: "আমাৰ সংকল্প"
+            },
+            ur: {
+                nav_brand_sub: "ٹریڈرز",
+                nav_process: "طریقہ کار",
+                nav_products: "ہمارا گھی",
+                nav_philosophy: "فلسفہ",
+                nav_faq: "سوالات",
+                nav_contact: "رابطہ کریں",
+                hero_badge: "براہ راست مورینا، ایم پی سے",
+                hero_h1_p1: "وہ گھی جسے آپ",
+                hero_h1_p2: "جانتے تھے۔",
+                hero_desc: "کئی برانڈز صرف دعوے کرتے ہیں۔ ہم اپنے روایتی لکڑی کے مکھن نکالنے کے طریقے پر کاربند ہیں اور خالص گھی فراہم کرتے ہیں۔",
+                val_1: "بلونا گھی",
+                val_2: "بغیر کیمیکل",
+                val_3: "پورے ہندوستان میں مفت ڈیلیوری",
+                hero_cta_primary: "خالص گھی چکھیں",
+                hero_cta_secondary: "ہمارے حقائق",
+                badge_top: "مقامی دودھ",
+                badge_bot: "روایتی طریقہ",
+                pledge_quote: '"ہم دعووں پر نہیں بلکہ کام پر یقین رکھتے ہیں۔ پہلے آزمائیں پھر فیصلہ کریں۔"',
+                pledge_lbl: "ہمارا سادہ عہد"
+            }
+        };
+    </script>
+
+    <script>
+        let cart = [];
+        let currentLanguage = 'en';
+        let currentTheme = 'dark';
+        let activeOrderNumber = '';
+        
+        // Product Management Structure
+        const productsConfig = {
+            cow: {
+                id: 'cow',
+                name: "Pure Bilona Ghee made with Desi Cow's Milk",
+                basePricePerKg: 1500,
+                selectedSize: '100g',
+                selectedPrice: 150,
+                qty: 1,
+                prices: {
+                    '100g': 150,
+                    '250g': 375,
+                    '500g': 750,
+                    '1kg': 1500,
+                    '2kg': 3000,
+                    '5kg': 7500
+                }
+            },
+            buffalo: {
+                id: 'buffalo',
+                name: "Pure Bilona Ghee made with Buffalo Milk",
+                basePricePerKg: 1200,
+                selectedSize: '100g',
+                selectedPrice: 120,
+                qty: 1,
+                prices: {
+                    '100g': 120,
+                    '250g': 300,
+                    '500g': 600,
+                    '1kg': 1200,
+                    '2kg': 2400,
+                    '5kg': 6000
+                }
+            }
+        };
+
+        // Custom Premium Toast Alert Engine (Prevents Standard Alert Overlays)
+        function showAlert(msg) {
+            const toast = document.getElementById('custom-alert');
+            const toastMsg = document.getElementById('custom-alert-msg');
+            toastMsg.textContent = msg;
+            toast.classList.remove('scale-90', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('scale-100', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('scale-100', 'opacity-100');
+                toast.classList.add('scale-90', 'opacity-0', 'pointer-events-none');
+            }, 3800);
+        }
+
+        // Complete Adaptive Dark/Light Mode Switcher Logic
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (currentTheme === 'dark') {
+                body.classList.add('light-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                currentTheme = 'light';
+            } else {
+                body.classList.remove('light-mode');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                currentTheme = 'dark';
+            }
+            localStorage.setItem('ant_theme_preference', currentTheme);
+        }
+
+        // Initialize click handling for Language dropdown to prevent hover bug
+        window.addEventListener('DOMContentLoaded', () => {
+            // Read localStorage theme setting
+            const savedTheme = localStorage.getItem('ant_theme_preference');
+            if (savedTheme === 'light') {
+                toggleTheme();
+            }
+            
+            // Read localStorage language setting
+            const savedLang = localStorage.getItem('ant_lang_preference') || 'en';
+            changeLanguage(savedLang);
+
+            // Register click toggle behavior for language dropdown menu
+            const langBtn = document.getElementById('lang-dropdown-btn');
+            const langMenu = document.getElementById('lang-dropdown-menu');
+
+            langBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langMenu.classList.toggle('hidden');
+            });
+
+            // Close language menu if click lands outside
+            document.addEventListener('click', (e) => {
+                if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+                    langMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Multilingual Translation Engine
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('ant_lang_preference', lang);
+            document.getElementById('current-lang-lbl').textContent = lang.toUpperCase();
+
+            // Perform recursive translation of labeled elements
+            const translatable = document.querySelectorAll('[data-i18n]');
+            translatable.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[lang] && dict[lang][key]) {
+                    el.textContent = dict[lang][key];
+                } else if (dict['en'][key]) {
+                    el.textContent = dict['en'][key];
+                }
+            });
+
+            // Update Dynamic Product Names based on selected translation dictionary
+            if (dict[lang]) {
+                productsConfig.cow.name = dict[lang]['prod_cow_name'] || "Pure Bilona Ghee made with Desi Cow's Milk";
+                productsConfig.buffalo.name = dict[lang]['prod_buf_name'] || "Pure Bilona Ghee made with Buffalo Milk";
+            }
+            
+            // Hide the language menu
+            document.getElementById('lang-dropdown-menu').classList.add('hidden');
+            updateCart();
+        }
+
+        // Auto-calculates prices instantly when package size changes
+        function selectPack(product, size, price) {
+            productsConfig[product].selectedSize = size;
+            productsConfig[product].selectedPrice = price;
+            
+            document.getElementById(`${product}-price-display`).textContent = `₹${price}`;
+            
+            const pills = document.querySelectorAll(`.${product}-pill`);
+            pills.forEach(pill => {
+                if (pill.textContent.trim() === size) {
+                    pill.classList.add('border-luxGold/40', 'bg-luxGold/20', 'text-luxGold', 'font-bold');
+                    pill.classList.remove('border-white/10', 'adaptive-text', 'font-semibold');
+                } else {
+                    pill.classList.remove('border-luxGold/40', 'bg-luxGold/20', 'text-luxGold', 'font-bold');
+                    pill.classList.add('border-white/10', 'adaptive-text', 'font-semibold');
+                }
+            });
+        }
+
+        function changeQty(product, dir) {
+            let val = productsConfig[product].qty + dir;
+            if (val < 1) val = 1;
+            productsConfig[product].qty = val;
+            document.getElementById(`${product}-qty`).textContent = val;
+        }
+
+        function addToCart(product) {
+            const config = productsConfig[product];
+            const size = config.selectedSize;
+            const unitPrice = config.selectedPrice;
+            const qty = config.qty;
+            const title = config.name;
+
+            const matchIndex = cart.findIndex(item => item.product === product && item.size === size);
+            if (matchIndex > -1) {
+                cart[matchIndex].qty += qty;
+            } else {
+                cart.push({
+                    product: product,
+                    title: title,
+                    size: size,
+                    unitPrice: unitPrice,
+                    qty: qty
+                });
+            }
+
+            config.qty = 1;
+            document.getElementById(`${product}-qty`).textContent = 1;
+
+            updateCart();
+            animateBadge();
+            toggleCartModal(); // Instantly open drawer
+        }
+
+        function updateCart() {
+            const container = document.getElementById('cart-items');
+            const totalDisplay = document.getElementById('cart-total-display');
+            const badge = document.getElementById('cart-badge');
+            const footer = document.getElementById('cart-footer');
+            const emptyMsg = document.getElementById('empty-cart-message');
+
+            container.innerHTML = '';
+            
+            if (cart.length === 0) {
+                container.appendChild(emptyMsg);
+                footer.classList.add('hidden');
+                badge.classList.remove('scale-100');
+                badge.classList.add('scale-0');
+                return;
+            }
+
+            emptyMsg.remove();
+            footer.classList.remove('hidden');
+
+            let grandTotal = 0;
+            let totalItems = 0;
+
+            cart.forEach((item, index) => {
+                const subtotal = item.unitPrice * item.qty;
+                grandTotal += subtotal;
+                totalItems += item.qty;
+
+                const row = document.createElement('div');
+                row.className = "flex justify-between items-center p-3 rounded-xl border adaptive-border adaptive-bg-secondary gap-4";
+                row.innerHTML = `
+                    <div class="flex-1">
+                        <span class="block text-xs font-semibold adaptive-text">${item.title}</span>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-luxGold/10 text-luxGold font-bold">${item.size}</span>
+                            <span class="text-[11px] adaptive-text-secondary">₹${item.unitPrice} each</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center border adaptive-border rounded-lg overflow-hidden adaptive-bg-secondary text-xs">
+                            <button onclick="modifyCartQty(${index}, -1)" class="px-2 py-1 adaptive-text-secondary hover:text-white">-</button>
+                            <span class="px-3 adaptive-text font-medium">${item.qty}</span>
+                            <button onclick="modifyCartQty(${index}, 1)" class="px-2 py-1 adaptive-text-secondary hover:text-white">+</button>
+                        </div>
+                        <span class="text-sm font-semibold text-luxGold font-serif min-w-[50px] text-right">₹${subtotal}</span>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            totalDisplay.textContent = `₹${grandTotal}`;
+            badge.textContent = totalItems;
+            badge.classList.remove('scale-0');
+            badge.classList.add('scale-100');
+        }
+
+        function modifyCartQty(index, dir) {
+            cart[index].qty += dir;
+            if (cart[index].qty < 1) {
+                cart.splice(index, 1);
+            }
+            updateCart();
+        }
+
+        function animateBadge() {
+            const badge = document.getElementById('cart-badge');
+            badge.classList.add('scale-125');
+            setTimeout(() => { badge.classList.remove('scale-125'); }, 300);
+        }
+
+        function toggleCartModal() {
+            const modal = document.getElementById('cart-modal');
+            const panel = document.getElementById('cart-panel');
+            
+            if (modal.classList.contains('invisible')) {
+                modal.classList.remove('invisible');
+                setTimeout(() => { panel.classList.remove('translate-x-full'); }, 50);
+            } else {
+                panel.classList.add('translate-x-full');
+                setTimeout(() => { modal.classList.add('invisible'); }, 300);
+            }
+        }
+
+        function toggleFaq(num) {
+            const ans = document.getElementById(`faq-ans-${num}`);
+            const icon = document.getElementById(`faq-icon-${num}`);
+            if (ans.classList.contains('hidden')) {
+                ans.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                ans.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Dynamic unique tracking order identifier calculation
+        function generateOrderNumber() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const date = String(now.getDate()).padStart(2, '0');
+            const random = Math.floor(1000 + Math.random() * 9000);
+            return `AN-${year}${month}${date}-${random}`;
+        }
+
+        function openCheckoutModal() {
+            toggleCartModal();
+            activeOrderNumber = generateOrderNumber();
+            
+            document.getElementById('chk-order-display-step1').textContent = `Order No: ${activeOrderNumber}`;
+            
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            goToStep1();
+        }
+
+        function closeCheckoutModal() {
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function goToStep1() {
+            document.getElementById('checkout-step-1').classList.remove('hidden');
+            document.getElementById('checkout-step-2').classList.add('hidden');
+            
+            document.getElementById('step-indicator-1').className = "flex items-center gap-2 pb-2 border-b-2 border-luxGold text-luxGold font-semibold text-xs tracking-wider uppercase";
+            document.getElementById('step-indicator-2').className = "flex items-center gap-2 pb-2 border-b-2 adaptive-border adaptive-text-secondary font-semibold text-xs tracking-wider uppercase";
+        }
+
+        function validateAndGoToPayment() {
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const addr = document.getElementById('cust-address').value.trim();
+            const lmark = document.getElementById('cust-landmark').value.trim();
+            const pin = document.getElementById('cust-pin').value.trim();
+
+            if (!name || !phone || !addr || !lmark || !pin) {
+                showAlert("Please fill in all requested fields to safely route your free delivery.");
+                return;
+            }
+
+            if (phone.length < 10) {
+                showAlert("Please provide a valid Indian 10-digit mobile number.");
+                return;
+            }
+
+            if (pin.length < 6) {
+                showAlert("Please provide a valid Indian 6-digit PIN Code.");
+                return;
+            }
+
+            // CRITICAL BUG FIX: Ensure UPI QR and Display Amount matches actual cart total dynamically
+            let total = 0;
+            cart.forEach(item => {
+                total += (Number(item.unitPrice) * Number(item.qty));
+            });
+
+            // Update checkout text displays dynamically with actual total and order metadata
+            document.getElementById('qr-payable-total').textContent = `₹${total}`;
+            document.getElementById('qr-order-num').textContent = activeOrderNumber;
+
+            // Generate real-time dynamic UPI code payload directly matching exact calculated order total
+            const upiPayload = `upi://pay?pa=q119739563@ybl&pn=Arogya%20Nidhi%20Traders&am=${total}&cu=INR&tn=${activeOrderNumber}`;
+            const encUpi = encodeURIComponent(upiPayload);
+            const qrSource = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encUpi}`;
+            
+            document.getElementById('upi-qr-image').src = qrSource;
+
+            document.getElementById('checkout-step-1').classList.add('hidden');
+            document.getElementById('checkout-step-2').classList.remove('hidden');
+
+            document.getElementById('step-indicator-1').className = "flex items-center gap-2 pb-2 border-b-2 adaptive-border adaptive-text-secondary font-semibold text-xs tracking-wider uppercase";
+            document.getElementById('step-indicator-2').className = "flex items-center gap-2 pb-2 border-b-2 border-luxGold text-luxGold font-semibold text-xs tracking-wider uppercase";
+        }
+
+        function copyUpiId() {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = "q119739563@ybl";
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            showAlert("UPI ID (q119739563@ybl) copied successfully to your clipboard!");
+        }
+
+        function validateUtrAndSubmit() {
+            const utr = document.getElementById('cust-utr').value.trim();
+            if (!utr || utr.length < 10) {
+                showAlert("Please supply your genuine 10+ character UPI transaction ID/UTR Number to process order verification.");
+                return;
+            }
+
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const addr = document.getElementById('cust-address').value.trim();
+            const lmark = document.getElementById('cust-landmark').value.trim();
+            const pin = document.getElementById('cust-pin').value.trim();
+
+            let grandTotal = 0;
+            let productListText = '';
+
+            cart.forEach(item => {
+                const sub = item.unitPrice * item.qty;
+                grandTotal += sub;
+                productListText += `• ${item.title} (${item.size}) x ${item.qty} = ₹${sub}\n`;
+            });
+
+            const now = new Date();
+            const timestamp = now.toLocaleString();
+
+            // Formulate exact structured WhatsApp order text
+            let message = `New Order Received\n\n`;
+            message += `Order Number:\n${activeOrderNumber}\n\n`;
+            message += `Customer:\n${name}\n\n`;
+            message += `Phone:\n${phone}\n\n`;
+            message += `Address:\n${addr}, ${lmark}\n\n`;
+            message += `Pincode:\n${pin}\n\n`;
+            message += `Product(s):\n${productListText}\n`;
+            message += `Amount:\n₹${grandTotal}\n\n`;
+            message += `UTR:\n${utr}\n\n`;
+            message += `Payment:\nPAID\n\n`;
+            message += `Generated Time & Date:\n${timestamp}`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const waRedirectUrl = `https://wa.me/919109723989?text=${encodedMessage}`;
+
+            // Reset state variables upon completion
+            cart = [];
+            updateCart();
+            document.getElementById('cust-utr').value = '';
+            document.getElementById('cust-name').value = '';
+            document.getElementById('cust-phone').value = '';
+            document.getElementById('cust-address').value = '';
+            document.getElementById('cust-landmark').value = '';
+            document.getElementById('cust-pin').value = '';
+
+            closeCheckoutModal();
+
+            // Redirect customer directly to official WhatsApp link
+            window.open(waRedirectUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
